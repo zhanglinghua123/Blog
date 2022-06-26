@@ -1,0 +1,54 @@
+@prefix: ~"blog-note";
+@import url("../../../../style/base.less");
+.@{prefix}-container{
+    // padding: 0 10% 0 10%;
+    position: relative;
+    top:60px;
+   
+    width : 100vw;
+    min-height: calc(100vh - 60px);
+    min-width: 100px;
+    color : var(--color);
+    background-color: var( --backGroundColorLittleLight, rgba(0, 0, 0, 0.06));
+}
+.@{prefix}-box{
+    display: flex;
+    align-items: flex-start;
+}
+.@{prefix}-total{
+    position:  fixed;
+    width:15vw;
+    min-height: calc(100vh - 60px);
+    background-color: var(--backGroundColorLight);
+    border-right: 1px solid rgba(0,0,0,0.06);
+    border-left: 1px solid rgba(0,0,0,0.06);
+}
+.@{prefix}-view{
+    background-color: var(--backGroundColorLight,);
+    margin-left: calc( 15vw );
+    height:auto;
+    padding-left:24px;
+    padding-right: 24px;
+    width:65vw;
+}
+.@{prefix}-navbar{
+    height:auto;
+    width:20%;
+    color : var(--color) !important;
+    background-color: var( --backGroundColorLight, rgba(0, 0, 0, 0.06));
+    border-left:1px solid rgba(0,0,0,0.06);
+}
+.title-anchor.title-level2{
+    color : var(--color) !important;
+} 
+.markdown-navigation .title-anchor.active{
+    color: #007fff !important;   
+}
+.title-anchor.active{
+    border-left: 2px solid #007fff;
+}
+.title-anchor.title-level2 {
+    &:hover{
+        color: #007fff !important;   
+    }
+}
