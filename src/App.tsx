@@ -5,38 +5,39 @@ import { Head } from './page/fontpage/component/Head/Head';
 import moon from './static/svg/moon.svg';
 import sun from './static/svg/sun.svg';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Blog } from './page/blog/all/index';
-import { NewNote } from './page/note/new';
+import { Blog } from './page/blog/all';
+import { NewNote } from './page/note/new/index';
 import { AllNote } from './page/note/all';
-import classNames from 'classnames';
+import { BlogPre } from './page/blog/blogmarkdown';
 function App() {
     let modelname = 'hijiki';
     useEffect(() => {
         // setTimeout(() => {
         //定时器,created执行一秒后触发
-        (window as any).L2Dwidget.init({
-            pluginRootPath: 'live2dw/', //指向你的目录
-            pluginJsPath: 'lib/', //指向你的目录
-            // pluginModelPath: 'live2d-widget-model-nico/assets/',                                   //中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
-            tagMode: false,
-            debug: false,
-            // hibiki 是jk hijiki 是黑猫猫
-            // izumi 中年妇女 kahuru Q版女孩子
-            // wanko 是笨狗
-            // tororo 白猫
-            model: {
-                jsonPath: `/live2dw/live2d-widget-model-${modelname}/assets/${modelname}.model.json`,
-            }, //中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
-            display: {
-                position: 'left',
-                width: 130,
-                height: 130,
-                hOffset: 60, // canvas水平偏移
-                vOffset: 100, // canvas垂直偏移
-            }, //调整大小,和位置
-            mobile: { show: true }, //要不要盯着你的鼠标看
-            log: false,
-        });
+        if ((window as any).L2Dwidget)
+            (window as any).L2Dwidget.init({
+                pluginRootPath: 'live2dw/', //指向你的目录
+                pluginJsPath: 'lib/', //指向你的目录
+                // pluginModelPath: 'live2d-widget-model-nico/assets/',                                   //中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
+                tagMode: false,
+                debug: false,
+                // hibiki 是jk hijiki 是黑猫猫
+                // izumi 中年妇女 kahuru Q版女孩子
+                // wanko 是笨狗
+                // tororo 白猫
+                model: {
+                    jsonPath: `/live2dw/live2d-widget-model-${modelname}/assets/${modelname}.model.json`,
+                }, //中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
+                display: {
+                    position: 'left',
+                    width: 130,
+                    height: 130,
+                    hOffset: 60, // canvas水平偏移
+                    vOffset: 100, // canvas垂直偏移
+                }, //调整大小,和位置
+                mobile: { show: true }, //要不要盯着你的鼠标看
+                log: false,
+            });
         // }, 300);
     }, [modelname]);
     //  用来设置夜间模式
@@ -51,13 +52,18 @@ function App() {
                 ></Route>
                 <Route
                     path="/note/new"
-                    element={<NewNote placeholder="编辑你的新笔记吧!完成后输入esc" />}
+                    element={
+                        <NewNote placeholder="编辑你的新笔记吧!完成后输入esc" theme={isNight} />
+                    }
                 />
                 <Route path="/blog" element={<Blog theme={isNight} />} />
                 <Route
                     path="/blog/new"
-                    element={<NewNote placeholder="编辑你的新博客吧!完成后输入esc" />}
+                    element={
+                        <NewNote placeholder="编辑你的新博客吧!完成后输入esc" theme={isNight} />
+                    }
                 />
+                <Route path="/blog/:id" element={<BlogPre theme={isNight} />} />
             </Routes>
             <div className="App">
                 {/* 顶部的导航栏 */}

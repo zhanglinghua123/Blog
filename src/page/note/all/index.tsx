@@ -1,13 +1,13 @@
-import MarkdownNavbar from './component/MarkdownNavbar/index';
+import MarkdownNavbar from '../../../component/MarkdownNavbar/index';
 import { useEffect, useState } from 'react';
 import { getPreFixCls } from '../../../util/getPrefixCls';
-import MarkdownView from './component/MarkdownView';
+import MarkdownView from '../../../component/MarkdownView';
 // 导入用于测试的Makedown文件
 import './style/all.less';
 import raw from 'raw.macro';
 import article from '../../../static/makedown/test3';
 import classNames from 'classnames';
-import { List, ListContent, ListItem, ListProps } from './component/List';
+import { List, ListContent, ListItem, ListProps } from '../../../component/List';
 export const AllNote = (props: { theme?: string }) => {
     const { theme } = props;
     // 控制Markdown的显示内容

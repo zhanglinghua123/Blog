@@ -1,11 +1,16 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import { Card, CardProps } from '../../../component/card/Card';
-import { Tip, TipProps } from '../../../component/tip/tip';
+import { Card, CardProps } from '../../../component/Card/Card';
+import { Tip, TipProps } from '../../../component/Tip/tip';
 import { getPreFixCls } from '../../../util/getPrefixCls';
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './index.less';
 export const Blog = (props: { theme: boolean }) => {
     const { theme } = props;
+    //  获取导航对象
+    const navigate = useNavigate();
+
     // 用来显示的Tip数据
     const [TipArray, SetTipArray] = useState<TipProps[]>([]);
     const [CardArray, SetCardArray] = useState<CardProps[]>([]);
@@ -66,6 +71,8 @@ export const Blog = (props: { theme: boolean }) => {
             {
                 title: '测试',
                 time: '08,06,2022',
+                titleurl: '/blog/test',
+                onClick: () => {},
                 tipArray: [
                     {
                         content: 'vue',
@@ -80,6 +87,8 @@ export const Blog = (props: { theme: boolean }) => {
             {
                 title: '测试',
                 time: '08,06,2022',
+                titleurl: '/blog/test',
+                onClick: () => {},
                 tipArray: [
                     {
                         content: 'vue',
@@ -94,6 +103,8 @@ export const Blog = (props: { theme: boolean }) => {
             {
                 title: '测试',
                 time: '08,06,2022',
+                titleurl: '/blog/test',
+                onClick: () => {},
                 tipArray: [
                     {
                         content: 'vue',
@@ -108,6 +119,8 @@ export const Blog = (props: { theme: boolean }) => {
             {
                 title: '测试',
                 time: '08,06,2022',
+                titleurl: '/blog/test',
+                onClick: () => {},
                 tipArray: [
                     {
                         content: 'vue',
@@ -122,6 +135,8 @@ export const Blog = (props: { theme: boolean }) => {
             {
                 title: '测试',
                 time: '08,06,2022',
+                titleurl: '/blog/test',
+                onClick: () => {},
                 tipArray: [
                     {
                         content: 'vue',

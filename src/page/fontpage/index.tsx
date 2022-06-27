@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useEffect, useState } from 'react';
-import { Card, CardProps } from '../../component/card/Card';
+import { Card, CardProps } from '../../component/Card/Card';
 import { Intro } from './component/Intro';
 import './style/index.less';
 import Image from '../../static/picture/portrait.jpg';

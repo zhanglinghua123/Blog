@@ -1,7 +1,7 @@
 import { Icon } from '@zhanglinghua123/minereactcomponentlibrary';
 import classNames from 'classnames';
 import { useState } from 'react';
-import { getPreFixCls } from '../../../../../util/getPrefixCls';
+import { getPreFixCls } from '../../util/getPrefixCls';
 import './index.less';
 export type ListItem = {
     label: string;

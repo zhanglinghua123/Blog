@@ -8,6 +8,8 @@ export const getPreFixCls = (name: string) => {
         note: 'blog-note',
         blog: 'blog-blog',
         list: 'blog-list',
+        blogPre: 'blog-pre',
+        'note-new': 'blog-note-new',
     };
     return obj[name];
 };
