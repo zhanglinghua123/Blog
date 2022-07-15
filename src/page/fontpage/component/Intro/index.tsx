@@ -1,7 +1,7 @@
-import { Button, Icon } from '@zhanglinghua123/minereactcomponentlibrary';
-import { ReactNode } from 'react';
-import { getPreFixCls } from '../../../../util/getPrefixCls';
-import './index.less';
+import { Button, Icon } from '@zhanglinghua123/minereactcomponentlibrary'
+import { ReactNode } from 'react'
+import { getPreFixCls } from '../../../../util/getPrefixCls'
+import './index.less'
 type IntroProp = Partial<{
     portrait: ReactNode;
     UserName: string;
@@ -10,8 +10,8 @@ type IntroProp = Partial<{
     statistics: string[][];
 }>;
 export const Intro = (props: IntroProp) => {
-    const { portrait, iconArray, hoverColor, statistics, UserName } = props;
-    const prefixCls = getPreFixCls('intro');
+    const { portrait, iconArray, statistics, UserName } = props
+    const prefixCls = getPreFixCls('intro')
     return (
         <div className={`${prefixCls}-container`}>
             <div className={`${prefixCls}-image`}>
@@ -25,7 +25,7 @@ export const Intro = (props: IntroProp) => {
                             <div className={`${prefixCls}-statis-text1`}>{value[0]}</div>
                             <div className={`${prefixCls}-statis-text2`}>{value[1]}</div>
                         </div>
-                    );
+                    )
                 })}
             </div>
             <Button type={'text'} className={`${prefixCls}-button`} size="middle">
@@ -33,13 +33,13 @@ export const Intro = (props: IntroProp) => {
             </Button>
             <div className={`${prefixCls}-icon-array`}>
                 {iconArray?.map(value => {
-                    if (typeof value === 'string') {
-                        return <Icon src={value}></Icon>;
-                    } else {
-                        return value;
-                    }
+                    if (typeof value === 'string') 
+                        return <Icon src={value}></Icon>
+                     else 
+                        return value
+                    
                 })}
             </div>
         </div>
-    );
-};
+    )
+}

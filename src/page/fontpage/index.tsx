@@ -1,20 +1,20 @@
-import classNames from 'classnames';
-import { useEffect, useState } from 'react';
-import { Card, CardProps } from '../../component/Card/Card';
-import { Intro } from './component/Intro';
-import './style/index.less';
-import Image from '../../static/picture/portrait.jpg';
+import classNames from 'classnames'
+import { useEffect, useState } from 'react'
+import { Card, CardProps } from '../../component/Card/Card'
+import { Intro } from './component/Intro'
+import './style/index.less'
+import Image from '../../static/picture/portrait.jpg'
 
 export const FontPage = (props: { isNight: boolean }) => {
-    const { isNight } = props;
-    const prefixCls = 'fontpage';
+    const { isNight } = props
+    const prefixCls = 'fontpage'
     // 博客信息存储的地方
-    const [CardArray, SetCardArray] = useState<CardProps[]>();
+    const [CardArray, SetCardArray] = useState<CardProps[]>()
     //  显示的句子数据
     const [HeadSentence, SetHeadSentence] = useState<string[]>([
         '记 录 ,生 命 中 的 美 好',
-        "Don't Cry,do laugh",
-    ]);
+        "Don't Cry,do laugh"
+    ])
 
     useEffect(() => {
         SetCardArray([
@@ -24,13 +24,13 @@ export const FontPage = (props: { isNight: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -38,13 +38,13 @@ export const FontPage = (props: { isNight: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -52,13 +52,13 @@ export const FontPage = (props: { isNight: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -66,13 +66,13 @@ export const FontPage = (props: { isNight: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -80,16 +80,16 @@ export const FontPage = (props: { isNight: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
-            },
-        ]);
-    }, []);
+                        color: 'white'
+                    }
+                ]
+            }
+        ])
+    }, [])
     return (
         <div>
             <div className={classNames(`${prefixCls}-head`)}>
@@ -101,12 +101,12 @@ export const FontPage = (props: { isNight: boolean }) => {
             <div
                 className={classNames(`${prefixCls}-content`, {
                     light: !isNight,
-                    night: isNight,
+                    night: isNight
                 })}
             >
                 <div className={`${prefixCls}-card-group`}>
                     {CardArray?.map(value => {
-                        return <Card {...value}></Card>;
+                        return <Card {...value}></Card>
                     })}
                 </div>
                 <div className={`${prefixCls}-self-intro`}>
@@ -117,12 +117,12 @@ export const FontPage = (props: { isNight: boolean }) => {
                         iconArray={['githubfill', 'QQcirclefill', 'wechatfill', 'alipaycirclefill']}
                         statistics={[
                             ['文章', '41'],
-                            ['评论', '12'],
+                            ['评论', '12']
                         ]}
                     ></Intro>
                 </div>
                 <div></div>
             </div>
         </div>
-    );
-};
+    )
+}

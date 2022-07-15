@@ -1,28 +1,27 @@
-import MarkdownNavbar from '../../../component/MarkdownNavbar/index';
-import { useEffect, useState } from 'react';
-import { getPreFixCls } from '../../../util/getPrefixCls';
-import MarkdownView from '../../../component/MarkdownView';
+import MarkdownNavbar from '../../../component/MarkdownNavbar/index'
+import { useEffect, useState } from 'react'
+import { getPreFixCls } from '../../../util/getPrefixCls'
+import MarkdownView from '../../../component/MarkdownView'
 // 导入用于测试的Makedown文件
-import './style/all.less';
-import raw from 'raw.macro';
-import article from '../../../static/makedown/test3';
-import classNames from 'classnames';
-import { List, ListContent, ListItem, ListProps } from '../../../component/List';
+import './style/all.less'
+import raw from 'raw.macro'
+import classNames from 'classnames'
+import { List, ListContent } from '../../../component/List'
 export const AllNote = (props: { theme?: string }) => {
-    const { theme } = props;
+    const { theme } = props
     // 控制Markdown的显示内容
-    const [content, setContent] = useState<string>('');
+    const [content, setContent] = useState<string>('')
     // 控制当前的Markdown对应的Url
-    const [url, setUrl] = useState<string>('');
+    const [url, setUrl] = useState<string>('')
     // 设置List显示的内容
-    const [ListContent, SetListContent] = useState<ListContent[]>([]);
-    const prefixCls = getPreFixCls('note');
+    const [ListContent, SetListContent] = useState<ListContent[]>([])
+    const prefixCls = getPreFixCls('note')
     // 获取对应的 List数据
     useEffect(() => {
         SetListContent([
             {
                 title: 'Vue',
-                titleUrl: '/ds',
+                titleUrl: '/ds'
             },
             {
                 title: 'JS',
@@ -32,22 +31,22 @@ export const AllNote = (props: { theme?: string }) => {
                     { label: 'sasas', url: 'sas' },
                     { label: 'sasas', url: 'sas' },
                     { label: 'sasas', url: 'sas' },
-                    { label: 'sasas', url: 'sas' },
-                ],
+                    { label: 'sasas', url: 'sas' }
+                ]
             },
             {
                 title: 'CSS',
-                titleUrl: '/ds',
-            },
-        ]);
-    }, []);
+                titleUrl: '/ds'
+            }
+        ])
+    }, [])
     // 获取对应的Makedown文件
     useEffect(() => {
         // 通过网络请求获取对应的Markdown文件内容
         // const test1 = article;
-        const test1 = raw('../../../static/makedown/test4.md');
-        setContent(test1);
-    }, [url]);
+        const test1 = raw('../../../static/makedown/test4.md')
+        setContent(test1)
+    }, [url])
     return (
         <div className={classNames(`${prefixCls}-container`, theme)}>
             <div className={`${prefixCls}-box`}>
@@ -65,5 +64,5 @@ export const AllNote = (props: { theme?: string }) => {
                 <MarkdownNavbar className={`${prefixCls}-navbar`} source={content}></MarkdownNavbar>
             </div>
         </div>
-    );
-};
+    )
+}

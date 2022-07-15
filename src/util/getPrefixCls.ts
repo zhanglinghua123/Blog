@@ -9,7 +9,7 @@ export const getPreFixCls = (name: string) => {
         blog: 'blog-blog',
         list: 'blog-list',
         blogPre: 'blog-pre',
-        'note-new': 'blog-note-new',
-    };
-    return obj[name];
-};
+        'note-new': 'blog-note-new'
+    }
+    return obj[name]
+}

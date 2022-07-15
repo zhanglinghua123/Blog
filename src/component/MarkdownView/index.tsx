@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import remarkGfm from 'remark-gfm';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
+import remarkGfm from 'remark-gfm'
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism'
 // darcula webstorm
 // vscDarkPlus vscode暗色主题
 
@@ -14,14 +14,14 @@ type tProps = {
 };
 
 const MarkdownView = (props: tProps) => {
-    const { textContent, ContainerStyle: style, className } = props;
+    const { textContent, ContainerStyle: style, className } = props
     return (
         <div style={style} className={className}>
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
                     code({ node, inline, className, children, style, ...props }) {
-                        const match = /language-(\w+)/.exec(className || '');
+                        const match = /language-(\w+)/.exec(className || '')
                         // 不知道为啥需要连续的两个才能进行成功解析 ?
 
                         return !inline && match ? (
@@ -37,14 +37,14 @@ const MarkdownView = (props: tProps) => {
                             <code className={className} {...props}>
                                 {children}
                             </code>
-                        );
-                    },
+                        )
+                    }
                 }}
             >
                 {textContent}
             </ReactMarkdown>
         </div>
-    );
-};
+    )
+}
 
-export default MarkdownView;
+export default MarkdownView

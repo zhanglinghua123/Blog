@@ -1,7 +1,7 @@
-import { Icon } from '@zhanglinghua123/minereactcomponentlibrary';
-import { CSSProperties } from 'react';
-import { getPreFixCls } from '../../util/getPrefixCls';
-import './tip.less';
+import { Icon } from '@zhanglinghua123/minereactcomponentlibrary'
+import { CSSProperties } from 'react'
+import { getPreFixCls } from '../../util/getPrefixCls'
+import './tip.less'
 export type TipProps = Partial<{
     iconSrc?: string;
     content?: string;
@@ -15,9 +15,9 @@ export const Tip = (props: TipProps) => {
         content,
         style,
         color = 'white',
-        backgroundColor = '#3eaf7c',
-    } = props;
-    const prefix = getPreFixCls('tip');
+        backgroundColor = '#3eaf7c'
+    } = props
+    const prefix = getPreFixCls('tip')
     return (
         <span
             className={`${prefix}-container`}
@@ -26,5 +26,5 @@ export const Tip = (props: TipProps) => {
             {IconSrc && <Icon src={IconSrc}></Icon>}
             <span>{content}</span>
         </span>
-    );
-};
+    )
+}

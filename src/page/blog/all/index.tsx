@@ -1,72 +1,72 @@
-import classNames from 'classnames';
-import { useEffect, useState } from 'react';
-import { Card, CardProps } from '../../../component/Card/Card';
-import { Tip, TipProps } from '../../../component/Tip/tip';
-import { getPreFixCls } from '../../../util/getPrefixCls';
-import { useParams } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import './index.less';
+import classNames from 'classnames'
+import { useEffect, useState } from 'react'
+import { Card, CardProps } from '../../../component/Card/Card'
+import { Tip, TipProps } from '../../../component/Tip/tip'
+import { getPreFixCls } from '../../../util/getPrefixCls'
+import { useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import './index.less'
 export const Blog = (props: { theme: boolean }) => {
-    const { theme } = props;
+    const { theme } = props
     //  获取导航对象
-    const navigate = useNavigate();
+    const navigate = useNavigate()
 
     // 用来显示的Tip数据
-    const [TipArray, SetTipArray] = useState<TipProps[]>([]);
-    const [CardArray, SetCardArray] = useState<CardProps[]>([]);
-    const PrefixCls = getPreFixCls('blog');
+    const [TipArray, SetTipArray] = useState<TipProps[]>([])
+    const [CardArray, SetCardArray] = useState<CardProps[]>([])
+    const PrefixCls = getPreFixCls('blog')
     useEffect(() => {
         SetTipArray([
             {
                 content: 'vue',
                 color: 'white',
-                backgroundColor: '#17FA04',
+                backgroundColor: '#17FA04'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
+                color: 'white'
             },
             {
                 content: 'vue',
-                color: 'white',
-            },
-        ]);
+                color: 'white'
+            }
+        ])
         SetCardArray([
             {
                 title: '测试',
@@ -76,13 +76,13 @@ export const Blog = (props: { theme: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -92,13 +92,13 @@ export const Blog = (props: { theme: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -108,13 +108,13 @@ export const Blog = (props: { theme: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -124,13 +124,13 @@ export const Blog = (props: { theme: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
+                        color: 'white'
+                    }
+                ]
             },
             {
                 title: '测试',
@@ -140,16 +140,16 @@ export const Blog = (props: { theme: boolean }) => {
                 tipArray: [
                     {
                         content: 'vue',
-                        color: 'white',
+                        color: 'white'
                     },
                     {
                         content: 'vue',
-                        color: 'white',
-                    },
-                ],
-            },
-        ]);
-    }, []);
+                        color: 'white'
+                    }
+                ]
+            }
+        ])
+    }, [])
     return (
         <div className={classNames(`${PrefixCls}-container`, theme ? 'night' : 'light')}>
             <div className={`${PrefixCls}-tip-container`}>
@@ -160,11 +160,11 @@ export const Blog = (props: { theme: boolean }) => {
                                 marginLeft: '4px',
                                 marginBottom: '10px',
                                 padding: '4px 8px',
-                                fontSize: '16px',
+                                fontSize: '16px'
                             }}
                             {...val}
                         ></Tip>
-                    );
+                    )
                 })}
             </div>
             <div>
@@ -174,22 +174,22 @@ export const Blog = (props: { theme: boolean }) => {
                             className=""
                             titlestyle={{
                                 fontSize: '20px',
-                                fontWeight: '400',
+                                fontWeight: '400'
                             }}
                             timestyle={{
                                 fontSize: '16px',
-                                margin: '4px 0',
+                                margin: '4px 0'
                             }}
                             style={{
                                 marginTop: '30px',
                                 borderRadius: '10px',
-                                marginBottom: '30px',
+                                marginBottom: '30px'
                             }}
                             {...value}
                         ></Card>
-                    );
+                    )
                 })}
             </div>
         </div>
-    );
-};
+    )
+}

@@ -9,11 +9,11 @@ module.exports = function override(config, env) {
                 loader: 'less-loader',
                 options: {
                     lessOptions: {
-                        javascriptEnabled: true,
-                    },
-                },
-            },
-        ],
-    });
-    return config;
-};
+                        javascriptEnabled: true
+                    }
+                }
+            }
+        ]
+    })
+    return config
+}
