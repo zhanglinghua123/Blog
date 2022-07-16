@@ -1,0 +1,69 @@
+.NavBar-Container {
+  font-size: 14px;
+  padding: 0;
+}
+.NavBar-Container li {
+  list-style: none;
+  line-height: 2em;
+  cursor: pointer;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
+  word-break: break-all;
+  text-overflow: ellipsis;
+}
+.NavBar-Container li:hover {
+  color: #007fff;
+  background-color: #eee;
+  border-left: #007fff 2px solid;
+}
+.NavBar-Container small {
+  margin-right: 16px;
+}
+.NavBar-Container .NavBar-1 {
+  padding-left: 8px;
+  font-size: 1.2em;
+  color: #000;
+}
+.NavBar-Container .NavBar-1dark {
+  color: #ddd;
+}
+.NavBar-Container .NavBar-2 {
+  font-size: 1.1em;
+  padding-left: 24px;
+  color: #333;
+}
+.NavBar-Container .NavBar-2dark {
+  color: #ddd;
+}
+.NavBar-Container .NavBar-3 {
+  font-size: 1em;
+  padding-left: 40px;
+  color: #666;
+}
+.NavBar-Container .NavBar-3dark {
+  color: #ddd;
+}
+.NavBar-Container .NavBar-4 {
+  font-size: 0.9em;
+  padding-left: 56px;
+  color: #999;
+}
+.NavBar-Container .NavBar-4dark {
+  color: #ddd;
+}
+.NavBar-Container .NavBar-5 {
+  font-size: 0.8em;
+  padding-left: 72px;
+  color: #aaa;
+}
+.NavBar-Container .NavBar-5dark {
+  color: #ddd;
+}
+.NavBar-Container .NavBar-6 {
+  font-size: 0.8em;
+  padding-left: 88px;
+  color: #bbb;
+}
+.NavBar-Container .NavBar-6dark {
+  color: #ddd;
+}
