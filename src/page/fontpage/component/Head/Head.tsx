@@ -66,7 +66,7 @@ export const Head = (props: HeadProps) => {
 
                     return (
                         <div
-                            key={index}
+                            key={value.toString()}
                             className={`${prefixCls}-headcolumn-item`}
                             onMouseOver={
                                 value[2]

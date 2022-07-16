@@ -25,7 +25,7 @@ export const BlogPre = (props: Partial<{ theme: boolean }>) => {
             })}
         >
             <MarkdownView textContent={Source} className={`${prefixCls}-view`}></MarkdownView>
-            <MarkdownNavbar source={Source} className={`${prefixCls}-navbar`}></MarkdownNavbar>
+            <MarkdownNavbar theme={theme?"dark":""} source={Source} className={`${prefixCls}-navbar`}></MarkdownNavbar>
         </div>
     )
 }

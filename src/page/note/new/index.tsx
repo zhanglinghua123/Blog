@@ -84,7 +84,7 @@ export const NewNote = (props: NoteProps) => {
                 }
                 className={classNames('vditor', `${prefixCls}-vditor`)}
             />
-            <MakedownNavbar className={`${prefixCls}-navbar`} source={content}></MakedownNavbar>
+            <MakedownNavbar theme={theme?"dark":""} className={`${prefixCls}-navbar`} source={content}></MakedownNavbar>
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import classNames from 'classnames'
-import { CSSProperties, useEffect } from 'react'
+import { CSSProperties } from 'react'
 import { Tip, TipProps } from '../Tip/tip'
 import { getPreFixCls } from '../../util/getPrefixCls'
 import './card.less'
@@ -35,6 +35,7 @@ export const Card = (props: CardProps) => {
         <div style={{ ...style }} className={classNames(`${prefixCls}-container`, className)}>
             <div
                 onClick={() => {
+                    // eslint-disable-next-line no-unused-expressions
                     titleurl && navigate(titleurl)
                     onClick?.()
                 }}
@@ -48,7 +49,7 @@ export const Card = (props: CardProps) => {
             </div>
             <div style={tipContainerStyle}>
                 {tipArray?.map(value => {
-                    return <Tip {...value}></Tip>
+                    return <Tip key={value.content} {...value}></Tip>
                 })}
             </div>
         </div>

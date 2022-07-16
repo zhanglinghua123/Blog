@@ -3,13 +3,10 @@ import { useEffect, useState } from 'react'
 import { Card, CardProps } from '../../../component/Card/Card'
 import { Tip, TipProps } from '../../../component/Tip/tip'
 import { getPreFixCls } from '../../../util/getPrefixCls'
-import { useParams } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import './index.less'
 export const Blog = (props: { theme: boolean }) => {
     const { theme } = props
-    //  获取导航对象
-    const navigate = useNavigate()
+    
 
     // 用来显示的Tip数据
     const [TipArray, SetTipArray] = useState<TipProps[]>([])
@@ -156,6 +153,7 @@ export const Blog = (props: { theme: boolean }) => {
                 {TipArray.map(val => {
                     return (
                         <Tip
+                            key={val.content}
                             style={{
                                 marginLeft: '4px',
                                 marginBottom: '10px',
@@ -171,6 +169,7 @@ export const Blog = (props: { theme: boolean }) => {
                 {CardArray?.map(value => {
                     return (
                         <Card
+                            key={value.title || ""+value.titleurl}
                             className=""
                             titlestyle={{
                                 fontSize: '20px',

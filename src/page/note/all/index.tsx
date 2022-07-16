@@ -12,7 +12,7 @@ export const AllNote = (props: { theme?: string }) => {
     // 控制Markdown的显示内容
     const [content, setContent] = useState<string>('')
     // 控制当前的Markdown对应的Url
-    const [url, setUrl] = useState<string>('')
+    const [url] = useState<string>('')
     // 设置List显示的内容
     const [ListContent, SetListContent] = useState<ListContent[]>([])
     const prefixCls = getPreFixCls('note')
@@ -61,7 +61,7 @@ export const AllNote = (props: { theme?: string }) => {
                     darkMode={true}
                     className={`${prefixCls}-view`}
                 ></MarkdownView>
-                <MarkdownNavbar className={`${prefixCls}-navbar`} source={content}></MarkdownNavbar>
+                <MarkdownNavbar theme={theme?"dark":""} className={`${prefixCls}-navbar`} source={content}></MarkdownNavbar>
             </div>
         </div>
     )

@@ -11,7 +11,7 @@ export const FontPage = (props: { isNight: boolean }) => {
     // 博客信息存储的地方
     const [CardArray, SetCardArray] = useState<CardProps[]>()
     //  显示的句子数据
-    const [HeadSentence, SetHeadSentence] = useState<string[]>([
+    const [HeadSentence] = useState<string[]>([
         '记 录 ,生 命 中 的 美 好',
         "Don't Cry,do laugh"
     ])
@@ -106,7 +106,7 @@ export const FontPage = (props: { isNight: boolean }) => {
             >
                 <div className={`${prefixCls}-card-group`}>
                     {CardArray?.map(value => {
-                        return <Card {...value}></Card>
+                        return <Card key={value.title} {...value}></Card>
                     })}
                 </div>
                 <div className={`${prefixCls}-self-intro`}>

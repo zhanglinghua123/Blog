@@ -20,12 +20,15 @@ const MarkdownView = (props: tProps) => {
             <ReactMarkdown
                 remarkPlugins={[remarkGfm]}
                 components={{
-                    code({ node, inline, className, children, style, ...props }) {
+                    // eslint-disable-next-line no-unused-vars
+                    code({  inline, className, children, style, ...props }) {
                         const match = /language-(\w+)/.exec(className || '')
-                        // 不知道为啥需要连续的两个才能进行成功解析 ?
-
+                        
+                        // eslint-disable-next-line multiline-ternary
                         return !inline && match ? (
                             <SyntaxHighlighter
+                             // 不知道为啥需要连续的两个才能进行成功解析 ?
+                                // eslint-disable-next-line react/no-children-prop
                                 children={String(children).replace(/\r\n/g, '\r\n\r\n')}
                                 style={vscDarkPlus}
                                 language={match[1]}
