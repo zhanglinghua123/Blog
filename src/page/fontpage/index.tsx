@@ -4,6 +4,7 @@ import { Card, CardProps } from '../../component/Card/Card'
 import { Intro } from './component/Intro'
 import './style/index.less'
 import Image from '../../static/picture/portrait.jpg'
+import AxiosInstance from '../../network/axios'
 
 export const FontPage = (props: { isNight: boolean }) => {
     const { isNight } = props
@@ -17,78 +18,22 @@ export const FontPage = (props: { isNight: boolean }) => {
     ])
 
     useEffect(() => {
-        SetCardArray([
-            {
-                title: '测试',
-                time: '08,06,2022',
-                tipArray: [
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    },
-                    {
-                        content: '测试',
-                        color: 'white'
-                    }
-                ]
-            },
-            {
-                title: '测试',
-                time: '08,06,2022',
-                tipArray: [
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    },
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    }
-                ]
-            },
-            {
-                title: '测试',
-                time: '08,06,2022',
-                tipArray: [
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    },
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    }
-                ]
-            },
-            {
-                title: '测试',
-                time: '08,06,2022',
-                tipArray: [
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    },
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    }
-                ]
-            },
-            {
-                title: '测试',
-                time: '08,06,2022',
-                tipArray: [
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    },
-                    {
-                        content: 'vue',
-                        color: 'white'
-                    }
-                ]
-            }
-        ])
+        AxiosInstance.request<{title:string, _id:string, time:string, category?:{color:string, category:string}[]}[], {title:string, _id:string, time:string, category:{color:string, category:string}[]}[] >({url: "/blog/getAllBlog"}).then(val => {
+            SetCardArray(val.map(value => {
+                return {
+                    title: value.title,
+                    titleurl: value._id,
+                    time: value.time,
+                    tipArray: value?.category?.map(val => {
+                        return {
+                            color: "white",
+                            backgroundColor: val.color,
+                            content: val.category
+                        }
+                    })
+                }      
+            }))
+        }) 
     }, [])
     return (
         <div>

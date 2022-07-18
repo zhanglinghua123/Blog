@@ -2,16 +2,17 @@ html {
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
         Noto Sans, sans-serif, apple color emoji, segoe ui emoji, Segoe UI Symbol, noto color emoji;
     font-size: 14px;
+
     .light {
         transition: background-color 0.5s, color 0.5s;
         --headBackGroundColor: white;
         --backGroundColor: rgba(0, 0, 0, 0.06);
         --backGroundColorLittleLight: rgba(0, 0, 0, 0.03);
         --backGroundColorLight: white;
-        --blackFilter: invert(0%) sepia(98%) saturate(67%) hue-rotate(145deg) brightness(96%)
-            contrast(100%);
+        --blackFilter: invert(0%) sepia(98%) saturate(67%) hue-rotate(145deg) brightness(96%) contrast(100%);
         --color: black;
     }
+
     .night {
         transition: background-color 0.5s, color 0.5s;
         --headBackGroundColor: black;
@@ -20,10 +21,10 @@ html {
         --backGroundColorLittleLight: #171d20;
         // 图像快的背景颜色
         --backGroundColorLight: #2f3133;
-        --whiteFilter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%)
-            contrast(102%);
+        --whiteFilter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
         --color: white;
     }
+
     // @media (prefers-color-scheme: dark) {
     //     --backGroundColor: #2f3133;
     // }
@@ -33,4 +34,8 @@ html {
     // @media (prefers-color-scheme: no-preference) {
     //     --backGroundColor: #fafafa;
     // }
+}
+
+body {
+    height: auto !important;
 }

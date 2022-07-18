@@ -10,6 +10,7 @@ import {message, Modal, Select} from "antd"
 import { Input } from 'antd'
 import { ColorPicker } from '../../../component/ColorPicker'
 import { Tip } from '../../../component/Tip/tip'
+import { dateFormat } from '../../../util/getTime'
 type NoteProps = Partial<{
     // 当完成编写的时候 进行的回调函数
     onComplete: () => void;
@@ -22,8 +23,8 @@ export const NewBlog = (props: NoteProps) => {
     const { placeholder, onComplete, theme } = props
     const prefixCls = getPreFixCls('note-new')
     const { Option } = Select
-     // Select value:Category
-    const [SelectValue, SetSelectValue] = useState<string|undefined>(undefined)
+    //  Select Value
+    const [SelectValue, SetSelectValue] = useState<{color:string, category:string}[]>([])
      // Input value:Title
     const [Title, SetTitle] = useState<string|undefined>(undefined)
      // 当前的目录信息
@@ -39,10 +40,12 @@ export const NewBlog = (props: NoteProps) => {
     const [Color, SetColor] = useState<string>("rgb(121, 201, 155)")
     const handleOk = () => {
         setIsModalVisible(false)
-        AxiosInstance.request<any, any>({url: "/note/newNote", method: "post", data: {
+        AxiosInstance.request<any, any>({url: "/blog/newBlog", method: "post", data: {
           title: Title,
           category: SelectValue,
+          time: dateFormat("dd,mm,YYYY", new Date()),
           markdown: vd?.getValue()
+        //   time: 
       }}).then(() => {
           message.success('博客添加成功!')
       }).catch(() => {
@@ -55,7 +58,7 @@ export const NewBlog = (props: NoteProps) => {
       }
      // 获取当前的目录信息
      useEffect(() => {
-        AxiosInstance.request<string[], string[]>({url: "/note/getNoteAllCateGory"}).then((val) => {
+        AxiosInstance.request<string[], string[]>({url: "/blog/getBlogAllCateGory"}).then((val) => {
             setcategory(val)
         })
     }, [isModalVisible])
@@ -95,6 +98,14 @@ export const NewBlog = (props: NoteProps) => {
             clearInterval(Timer)
         }
     }, [vd])
+    // 当颜色发生变化的时候 更新最后一个的颜色
+    useEffect(() => {
+        if(SelectValue.length>=1)
+        {SetSelectValue(value => {
+            value.splice(value.length-1, 1, {color: Color, category: value[value.length-1].category})
+            return value
+        })}
+    }, [Color])
     return (
         <div
             style={
@@ -123,29 +134,29 @@ export const NewBlog = (props: NoteProps) => {
             <MakedownNavbar theme={theme?"dark":""} className={`${prefixCls}-navbar`} source={content}></MakedownNavbar>
             <Modal title="编辑笔记标题以及分类" centered mask visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 
-            <Select mode="tags" maxTagCount={1} style={{ width: '100%', marginBottom: "15px" }} value={SelectValue} placeholder="选择笔记对应的分类"
-                onChange={(value) => {
-                    if (value.length > 1)
-                    SetSelectValue(value[1])
-                    else
-                    SetSelectValue(value[0])
-                }}
+            <Select mode="tags" style={{ width: '100%', marginBottom: "15px" }} value={SelectValue.map(val => val.category)} placeholder="选择笔记对应的分类"
+                onSelect={(value:any) => {SetSelectValue(val => [...val, {color: Color, category: value}])}}
+                onDeselect={(SelectValue: any) => {SetSelectValue(val => val.filter(value => value.category!==SelectValue))}}
             >
                 {category?.map(val => {
-                    return <Option key={val}>{val}</Option>
+                    return <Option key={(val as any).category}>{(val as any).category}</Option>
                 })}
             </Select>
             <Input placeholder="编辑笔记的标题" value={Title} onChange={val => SetTitle(val.target.value)} />
             <ColorPicker style={{marginTop: "15px", marginBottom: "15px"}} color={Color} setColor={SetColor}></ColorPicker>
             <span style={{marginRight: "4px"}}>当前设置的Tip为</span>
-            <Tip color={"white"}  
-                style={{
+            {SelectValue.map(val => {
+                return (
+                <Tip color={"white"} 
+                    key={val.category} 
+                    style={{
                                 marginLeft: '4px',
                                 marginBottom: '10px',
                                 padding: '4px 8px',
                                 fontSize: '16px'
                             }} 
-                backgroundColor={Color} content={SelectValue||"范例"} ></Tip>
+                    backgroundColor={val.color} content={val.category}></Tip>)
+            })}
             </Modal>
         </div>
     )
