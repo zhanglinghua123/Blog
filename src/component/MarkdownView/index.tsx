@@ -23,13 +23,12 @@ const MarkdownView = (props: tProps) => {
                     // eslint-disable-next-line no-unused-vars
                     code({  inline, className, children, style, ...props }) {
                         const match = /language-(\w+)/.exec(className || '')
-                        
                         // eslint-disable-next-line multiline-ternary
                         return !inline && match ? (
                             <SyntaxHighlighter
                              // 不知道为啥需要连续的两个才能进行成功解析 ?
                                 // eslint-disable-next-line react/no-children-prop
-                                children={String(children).replace(/\r\n/g, '\r\n\r\n')}
+                                children={String(children).replace(/\r\n/g, '\r\n\r\n').replace(/\n/g, "\n\n")}
                                 style={vscDarkPlus}
                                 language={match[1]}
                                 PreTag="div"

@@ -8,6 +8,9 @@ import { Blog } from './page/blog/all'
 import { NewNote } from './page/note/new/index'
 import { AllNote } from './page/note/all'
 import { BlogPre } from './page/blog/blogmarkdown'
+import { Live } from './page/live'
+import { NewBlog } from './page/blog/new'
+import 'antd/dist/antd.css'
 function App() {
     let modelname = 'hijiki'
     useEffect(() => {
@@ -62,10 +65,11 @@ function App() {
                 <Route
                     path="/blog/new"
                     element={
-                        <NewNote placeholder="编辑你的新博客吧!完成后输入esc" theme={isNight} />
+                        <NewBlog placeholder="编辑你的新博客吧!完成后输入esc" theme={isNight} />
                     }
                 />
                 <Route path="/blog/:id" element={<BlogPre theme={isNight} />} />
+                <Route path="/live" element={<Live theme={isNight?"night":"light"} />} />
             </Routes>
             <div className="App">
                 {/* 顶部的导航栏 */}
@@ -93,6 +97,7 @@ function App() {
                         ['友链', '/friend'],
                         ['Github', '/github'],
                         <img
+                            key={"img"}
                             onClick={() => {
                                 SetNight(!isNight)
                             }}

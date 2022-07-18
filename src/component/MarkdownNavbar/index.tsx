@@ -1,12 +1,11 @@
 
 import './index.less'
 import 'markdown-navbar/dist/navbar.css'
-import { NavBar } from '../MarkDown_NavBar'
+import { NavBar } from '../NavBar'
 const MakedownNavbar = (props: { source: string; className: string, theme:string}) => {
     const { source, className } = props
     return (
         <div className={className}>
-            {/* <Anchor> */}
             <div
                 style={{
                     fontWeight: 500,
@@ -18,7 +17,6 @@ const MakedownNavbar = (props: { source: string; className: string, theme:string
                 文章目录
             </div>
             <NavBar theme={props.theme} src={source}></NavBar>
-            {/* </Anchor> */}
         </div>
     )
 }

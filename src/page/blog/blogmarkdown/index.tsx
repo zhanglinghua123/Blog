@@ -13,7 +13,7 @@ export const BlogPre = (props: Partial<{ theme: boolean }>) => {
     const params = useParams()
     const prefixCls = getPreFixCls('blogPre')
     useEffect(() => {
-        console.log('params', params)
+console.log('params', params)
         const test1 = raw('../../../static/makedown/test4.md')
         SetSource(test1)
     }, [])

@@ -27,7 +27,7 @@ export const FontPage = (props: { isNight: boolean }) => {
                         color: 'white'
                     },
                     {
-                        content: 'vue',
+                        content: '测试',
                         color: 'white'
                     }
                 ]

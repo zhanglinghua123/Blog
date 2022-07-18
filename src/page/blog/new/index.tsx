@@ -6,7 +6,10 @@ import './index.less'
 import MakedownNavbar from '../../../component/MarkdownNavbar'
 import React, { useEffect, useState } from 'react'
 import AxiosInstance from '../../../network/axios'
-import { Input, message, Modal, Select } from 'antd'
+import {message, Modal, Select} from "antd"
+import { Input } from 'antd'
+import { ColorPicker } from '../../../component/ColorPicker'
+import { Tip } from '../../../component/Tip/tip'
 type NoteProps = Partial<{
     // 当完成编写的时候 进行的回调函数
     onComplete: () => void;
@@ -15,47 +18,52 @@ type NoteProps = Partial<{
     // 是否为dark主题
     theme: boolean;
 }>;
-export const NewNote = (props: NoteProps) => {
+export const NewBlog = (props: NoteProps) => {
     const { placeholder, onComplete, theme } = props
-    // Select value:Category
-    const [SelectValue, SetSelectValue] = useState<string|undefined>(undefined)
-    // Input value:Title
-    const [Title, SetTitle] = useState<string|undefined>(undefined)
-    const { Option } = Select
-    // 类名前缀
     const prefixCls = getPreFixCls('note-new')
-    //  Vditor对象
-    const [vd, setVd] = React.useState<Vditor>()
-    // 当前的目录信息
+    const { Option } = Select
+     // Select value:Category
+    const [SelectValue, SetSelectValue] = useState<string|undefined>(undefined)
+     // Input value:Title
+    const [Title, SetTitle] = useState<string|undefined>(undefined)
+     // 当前的目录信息
     const [category, setcategory] = useState<string[]>()
+    const [vd, setVd] = React.useState<Vditor>()
     // 用来规定具体的narbar导航解析内容
     const [content, setContent] = useState<string>(
         placeholder || '编辑你想要的内容,完成的时候输入esc'
     )
+    // 设置弹窗是否显示的变量
     const [isModalVisible, setIsModalVisible] = useState(false)
-
-
+    // 设置颜色的变量
+    const [Color, SetColor] = useState<string>("rgb(121, 201, 155)")
     const handleOk = () => {
-      setIsModalVisible(false)
-      AxiosInstance.request<any, any>({url: "/note/newNote", method: "post", data: {
-        title: Title,
-        category: SelectValue,
-        markdown: vd?.getValue()
-    }}).then(() => {
-        message.success('笔记添加成功!')
-    }).catch(() => {
-        message.error("笔记未添加成功,请联系管理员进行修正!")
-    })
-    }
-  
-    const handleCancel = () => {
-      setIsModalVisible(false)
-    }
+        setIsModalVisible(false)
+        AxiosInstance.request<any, any>({url: "/note/newNote", method: "post", data: {
+          title: Title,
+          category: SelectValue,
+          markdown: vd?.getValue()
+      }}).then(() => {
+          message.success('博客添加成功!')
+      }).catch(() => {
+          message.error("博客未添加成功,请联系管理员进行修正!")
+      })
+      }
+    
+      const handleCancel = () => {
+        setIsModalVisible(false)
+      }
+     // 获取当前的目录信息
+     useEffect(() => {
+        AxiosInstance.request<string[], string[]>({url: "/note/getNoteAllCateGory"}).then((val) => {
+            setcategory(val)
+        })
+    }, [isModalVisible])
+    // 设置Vditor
     useEffect(() => {
         const vditor = new Vditor('vditor', {
             minHeight: window.innerHeight - 60,
             after: () => {
-                // saveAs()
                 vditor.setValue(placeholder || '编辑你想要的内容,完成的时候输入esc')
                 setVd(vditor)
             },
@@ -87,12 +95,6 @@ export const NewNote = (props: NoteProps) => {
             clearInterval(Timer)
         }
     }, [vd])
-    // 获取当前的目录信息
-    useEffect(() => {
-        AxiosInstance.request<string[], string[]>({url: "/note/getNoteAllCateGory"}).then((val) => {
-            setcategory(val)
-        })
-    }, [isModalVisible])
     return (
         <div
             style={
@@ -133,7 +135,17 @@ export const NewNote = (props: NoteProps) => {
                     return <Option key={val}>{val}</Option>
                 })}
             </Select>
-                <Input placeholder="编辑笔记的标题" value={Title} onChange={val => SetTitle(val.target.value)} />
+            <Input placeholder="编辑笔记的标题" value={Title} onChange={val => SetTitle(val.target.value)} />
+            <ColorPicker style={{marginTop: "15px", marginBottom: "15px"}} color={Color} setColor={SetColor}></ColorPicker>
+            <span style={{marginRight: "4px"}}>当前设置的Tip为</span>
+            <Tip color={"white"}  
+                style={{
+                                marginLeft: '4px',
+                                marginBottom: '10px',
+                                padding: '4px 8px',
+                                fontSize: '16px'
+                            }} 
+                backgroundColor={Color} content={SelectValue||"范例"} ></Tip>
             </Modal>
         </div>
     )

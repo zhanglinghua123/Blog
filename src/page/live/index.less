@@ -1,5 +1,5 @@
 @prefix: ~"blog-note";
-@import url("../../../../style/base.less");
+@import url("../../style/base.less");
 
 .@{prefix}-container {
     // padding: 0 10% 0 10%;
@@ -28,7 +28,6 @@
 }
 
 .@{prefix}-view {
-    min-height: calc(100vh - 60px);
     background-color: var(--backGroundColorLight, );
     margin-left: calc(15vw);
     height: auto;
@@ -38,6 +37,7 @@
 }
 
 .@{prefix}-navbar {
+    min-height: calc(100vh - 60px);
     height: auto;
     width: 20%;
     color: var(--color) !important;

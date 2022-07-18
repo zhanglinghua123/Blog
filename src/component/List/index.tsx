@@ -4,13 +4,14 @@ import { useState } from 'react'
 import { getPreFixCls } from '../../util/getPrefixCls'
 import './index.less'
 export type ListItem = {
-    label: string;
-    url: string;
+    Label: string;
+    Url: string;
 };
-export type ListContent = { title: string; list?: ListItem[]; titleUrl: string };
+export type ListContent = { Title: string; List?: ListItem[]; TitleUrl: string };
 export type ListProps = {
-    content: ListContent[];
+    content?: ListContent[];
     // 点击时候的回调函数
+    // eslint-disable-next-line no-unused-vars
     onClick: (url: string) => void;
 };
 export const List = (props: ListProps) => {
@@ -23,6 +24,7 @@ export const List = (props: ListProps) => {
         return list.map((val, ind) => {
             return (
                 <div
+                    key={val.Label}
                     style={{
                         display: activeIndex !== index ? 'none' : undefined,
                         transition: 'display 0.5s'
@@ -31,22 +33,23 @@ export const List = (props: ListProps) => {
                         active: activeIndex === index && activeIndexItem === ind
                     })}
                     onClick={() => {
-                        onClick(val.url)
+                        onClick(val.Url)
                         setActiveIndexItem(ind)
                     }}
                 >
-                    {val.label}
+                    {val.Label}
                 </div>
             )
         })
     }
     return (
         <ul className={`${prefixCls}-container`}>
-            {content.map((val, index) => {
+            {content?.map((val, index) => {
                 return (
                     <li
+                        key={val.Title+val.TitleUrl}
                         className={
-                            val.list
+                            val.List
                                 ? undefined
                                 : classNames(`${prefixCls}-list-no-item`, {
                                       active: activeIndex === index
@@ -55,8 +58,8 @@ export const List = (props: ListProps) => {
                     >
                         <div
                             onClick={
-                                val.list?.length === 0
-                                    ? () => onClick(val.titleUrl)
+                                val.List?.length === 0
+                                    ? () => onClick(val.TitleUrl)
                                     : () => {
                                           // 如果再次点击active的item 则进行收回操作
                                           setActiveIndex(activeIndex === index ? -1 : index)
@@ -64,14 +67,14 @@ export const List = (props: ListProps) => {
                                       }
                             }
                         >
-                            <span>{val.title}</span>
-                            {val.list && (
+                            <span>{val.Title}</span>
+                            {val.List && (
                                 <Icon
                                     src={activeIndex === index ? 'caretdown' : 'caretright'}
                                 ></Icon>
                             )}
                         </div>
-                        {val.list && renderList(val.list, index)}
+                        {val.List && renderList(val.List, index)}
                     </li>
                 )
             })}

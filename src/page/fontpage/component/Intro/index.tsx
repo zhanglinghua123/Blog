@@ -21,6 +21,7 @@ export const Intro = (props: IntroProp) => {
             <div className={`${prefixCls}-statis`}>
                 {statistics?.map(value => {
                     return (
+                        // eslint-disable-next-line react/jsx-key
                         <div>
                             <div className={`${prefixCls}-statis-text1`}>{value[0]}</div>
                             <div className={`${prefixCls}-statis-text2`}>{value[1]}</div>

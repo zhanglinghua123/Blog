@@ -1,4 +1,3 @@
-import ErrorBoundary from 'antd/lib/alert/ErrorBoundary'
 import classNames from 'classnames'
 import { CSSProperties, useEffect, useState } from 'react'
 import './index.less'
@@ -68,24 +67,23 @@ export const NavBar = (props: NavBarProps) => {
             }
         }
     }
-    // const scrollToTarget = (dataId:string|undefined) => {
-    //     if(!dataId) return
-    //     if (scrollTimeout)
-    //         clearTimeout(scrollTimeout)
-    //     scrollTimeout = setTimeout(() => {
-    //         const target = document.querySelector<HTMLElement>(`[data-id="${dataId}"]`)
-    //         console.log(target)
-    //         if (target && typeof target.offsetTop === 'number')
-    //             safeScrollTo(window, target.offsetTop - headingTopoffset, 0, movesmooth)
-
-    //     }, 0)
-    // }
-    const scrollToPlace = (top: number, left: number) => {
-        if (scrollTimeout) clearTimeout(scrollTimeout)
+    const scrollToTarget = (dataId:string|undefined) => {
+        if(!dataId) return
+        if (scrollTimeout)
+            clearTimeout(scrollTimeout)
         scrollTimeout = setTimeout(() => {
-            safeScrollTo(window, top - headingTopoffset, left, movesmooth)
+            const target = document.querySelector<HTMLElement>(`[id="${dataId}"]`)
+            console.log(target)
+            if (target && typeof target.offsetTop === 'number')
+                safeScrollTo(window, target.offsetTop - headingTopoffset, 0, movesmooth)
         }, 0)
     }
+    // const scrollToPlace = (top: number, left: number) => {
+    //     if (scrollTimeout) clearTimeout(scrollTimeout)
+    //     scrollTimeout = setTimeout(() => {
+    //         safeScrollTo(window, top - headingTopoffset, left, movesmooth)
+    //     }, 0)
+    // }
     const getListNo = (arr: number[]) => {
         let result = ''
         for (let i = 0; i < arr.length; i++) {
@@ -101,13 +99,17 @@ export const NavBar = (props: NavBarProps) => {
         // used to match all title
         const matchResult = src.match(/#+\s[^#\n]*\n*/g)
         //  match the title content
-        const matchTitle = /#+\s/g
+        const matchTitle =  /#+\s([^#\n]+)\n*/g
         const NavBarStructure =
             matchResult?.map((val, index) => {
+                // 处理标题中包含链接的问题
+                // eslint-disable-next-line no-useless-escape
+                val = val.replace(/\[([^\n\[\]]*)\]\s*\([^\[\]\n]*\)/g, "$1")
                 return {
                     index: index,
                     level: val.match(/^#+/g)![0]?.length,
-                    content: val.replace(matchTitle, '').trim()
+                    // 替换掉标题中出现的link 标签
+                    content: val.replace(matchTitle, '$1').trim()
                 }
             }) || []
         console.log('---NavBarStructure before is', NavBarStructure)
@@ -163,6 +165,7 @@ export const NavBar = (props: NavBarProps) => {
                     if (count === (obj[val.level] as any)[val.content]) {
                         val.id = hashValue ? `${val.listNo}-${val.content}` : `heading-${index}`
                         val.offsetTop = (value as HTMLElement).offsetTop
+                        value.id = val.id
                     }
                 }
             })
@@ -199,7 +202,8 @@ export const NavBar = (props: NavBarProps) => {
                 <li
                     style={props.itemStyle}
                     onClick={() => {
-                        scrollToPlace(val.offsetTop || 0, 0)
+                        scrollToTarget(val.id)
+                        // scrollToPlace(val.offsetTop || 0, 0)
                     }}
                     key={val.id}
                     className={classNames(`${prefixCls}-${val.level}`, props.itemClassName, props.theme)}
@@ -211,10 +215,8 @@ export const NavBar = (props: NavBarProps) => {
         })
     }
     return (
-        <ErrorBoundary>
             <ul id={markdownContainerId} style={props.containerstyle} className={classNames('NavBar-Container', props.containerClassName)}>
                 {renderNavBar(NavBar)}
             </ul>
-        </ErrorBoundary>
     )
 }

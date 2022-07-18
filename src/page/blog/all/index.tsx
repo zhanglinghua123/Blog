@@ -20,7 +20,7 @@ export const Blog = (props: { theme: boolean }) => {
                 backgroundColor: '#17FA04'
             },
             {
-                content: 'vue',
+                content: '测试',
                 color: 'white'
             },
             {
@@ -154,6 +154,7 @@ export const Blog = (props: { theme: boolean }) => {
                     return (
                         <Tip
                             key={val.content}
+                            fontSize={14}
                             style={{
                                 marginLeft: '4px',
                                 marginBottom: '10px',
