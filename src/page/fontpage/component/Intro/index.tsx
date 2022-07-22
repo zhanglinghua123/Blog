@@ -36,7 +36,7 @@ export const Intro = (props: IntroProp) => {
                 {iconArray?.map(value => {
                     if (typeof value === 'string') 
                         return <Icon src={value}></Icon>
-                     else 
+                    else 
                         return value
                     
                 })}

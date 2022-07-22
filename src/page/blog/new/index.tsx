@@ -25,9 +25,9 @@ export const NewBlog = (props: NoteProps) => {
     const { Option } = Select
     //  Select Value
     const [SelectValue, SetSelectValue] = useState<{color:string, category:string}[]>([])
-     // Input value:Title
+    // Input value:Title
     const [Title, SetTitle] = useState<string|undefined>(undefined)
-     // 当前的目录信息
+    // 当前的目录信息
     const [category, setcategory] = useState<string[]>()
     const [vd, setVd] = React.useState<Vditor>()
     // 用来规定具体的narbar导航解析内容
@@ -41,23 +41,23 @@ export const NewBlog = (props: NoteProps) => {
     const handleOk = () => {
         setIsModalVisible(false)
         AxiosInstance.request<any, any>({url: "/blog/newBlog", method: "post", data: {
-          title: Title,
-          category: SelectValue,
-          time: dateFormat("dd,mm,YYYY", new Date()),
-          markdown: vd?.getValue()
+            title: Title,
+            category: SelectValue,
+            time: dateFormat("dd,mm,YYYY", new Date()),
+            markdown: vd?.getValue()
         //   time: 
-      }}).then(() => {
-          message.success('博客添加成功!')
-      }).catch(() => {
-          message.error("博客未添加成功,请联系管理员进行修正!")
-      })
-      }
+        }}).then(() => {
+            message.success('博客添加成功!')
+        }).catch(() => {
+            message.error("博客未添加成功,请联系管理员进行修正!")
+        })
+    }
     
-      const handleCancel = () => {
+    const handleCancel = () => {
         setIsModalVisible(false)
-      }
-     // 获取当前的目录信息
-     useEffect(() => {
+    }
+    // 获取当前的目录信息
+    useEffect(() => {
         AxiosInstance.request<string[], string[]>({url: "/blog/getBlogAllCateGory"}).then((val) => {
             setcategory(val)
         })
@@ -111,8 +111,8 @@ export const NewBlog = (props: NoteProps) => {
             style={
                 vd?.getCurrentMode() === 'sv'
                     ? {
-                          paddingLeft: '10%'
-                      }
+                        paddingLeft: '10%'
+                    }
                     : undefined
             }
             className={classNames(`${prefixCls}-container`, {
@@ -125,8 +125,8 @@ export const NewBlog = (props: NoteProps) => {
                 style={
                     vd?.getCurrentMode() === 'sv'
                         ? {
-                              width: '70vw'
-                          }
+                            width: '70vw'
+                        }
                         : undefined
                 }
                 className={classNames('vditor', `${prefixCls}-vditor`)}
@@ -134,29 +134,29 @@ export const NewBlog = (props: NoteProps) => {
             <MakedownNavbar theme={theme?"dark":""} className={`${prefixCls}-navbar`} source={content}></MakedownNavbar>
             <Modal title="编辑笔记标题以及分类" centered mask visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 
-            <Select mode="tags" style={{ width: '100%', marginBottom: "15px" }} value={SelectValue.map(val => val.category)} placeholder="选择笔记对应的分类"
-                onSelect={(value:any) => {SetSelectValue(val => [...val, {color: Color, category: value}])}}
-                onDeselect={(SelectValue: any) => {SetSelectValue(val => val.filter(value => value.category!==SelectValue))}}
-            >
-                {category?.map(val => {
-                    return <Option key={(val as any).category}>{(val as any).category}</Option>
-                })}
-            </Select>
-            <Input placeholder="编辑笔记的标题" value={Title} onChange={val => SetTitle(val.target.value)} />
-            <ColorPicker style={{marginTop: "15px", marginBottom: "15px"}} color={Color} setColor={SetColor}></ColorPicker>
-            <span style={{marginRight: "4px"}}>当前设置的Tip为</span>
-            {SelectValue.map(val => {
-                return (
-                <Tip color={"white"} 
-                    key={val.category} 
-                    style={{
+                <Select mode="tags" style={{ width: '100%', marginBottom: "15px" }} value={SelectValue.map(val => val.category)} placeholder="选择笔记对应的分类"
+                    onSelect={(value:any) => {SetSelectValue(val => [...val, {color: Color, category: value}])}}
+                    onDeselect={(SelectValue: any) => {SetSelectValue(val => val.filter(value => value.category!==SelectValue))}}
+                >
+                    {category?.map(val => {
+                        return <Option key={(val as any).category}>{(val as any).category}</Option>
+                    })}
+                </Select>
+                <Input placeholder="编辑笔记的标题" value={Title} onChange={val => SetTitle(val.target.value)} />
+                <ColorPicker style={{marginTop: "15px", marginBottom: "15px"}} color={Color} setColor={SetColor}></ColorPicker>
+                <span style={{marginRight: "4px"}}>当前设置的Tip为</span>
+                {SelectValue.map(val => {
+                    return (
+                        <Tip color={"white"} 
+                            key={val.category} 
+                            style={{
                                 marginLeft: '4px',
                                 marginBottom: '10px',
                                 padding: '4px 8px',
                                 fontSize: '16px'
                             }} 
-                    backgroundColor={val.color} content={val.category}></Tip>)
-            })}
+                            backgroundColor={val.color} content={val.category}></Tip>)
+                })}
             </Modal>
         </div>
     )

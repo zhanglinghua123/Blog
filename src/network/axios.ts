@@ -1,7 +1,8 @@
+import { message } from "antd"
 import axios from "axios"
 const AxiosInstance =  axios.create({
     // 基础的url
-    baseURL: "http://localhost:9205",
+    baseURL: "http://124.220.201.171:9205",
     // 超时配置
     timeout: 5000,
     headers: {
@@ -15,22 +16,18 @@ AxiosInstance.interceptors.request.use(config => {
     //   text: 'loading...'
     // })
     return config
-  })
-  // 添加响应拦截器
+})
+// 添加响应拦截器
 AxiosInstance.interceptors.response.use(response => {
     // loadingInstance.close()
     // console.log(response)
     return response.data
-  }, error => {
+}, error => {
     // console.log('TCL: error', error)
-    // const msg = error.Message !== undefined ? error.Message : ''
-    // Message({
-    //   message: '网络错误' + msg,
-    //   type: 'error',
-    //   duration: 3 * 1000
-    // })
+    const msg = error.Message !== undefined ? error.Message : '似乎产生了网络错误'
     // loadingInstance.close()
+    message.error(msg, 3)
     return Promise.reject(error)
-  })
+})
 
 export default AxiosInstance

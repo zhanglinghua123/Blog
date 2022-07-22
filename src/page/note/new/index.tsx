@@ -36,20 +36,20 @@ export const NewNote = (props: NoteProps) => {
 
 
     const handleOk = () => {
-      setIsModalVisible(false)
-      AxiosInstance.request<any, any>({url: "/note/newNote", method: "post", data: {
-        title: Title,
-        category: SelectValue,
-        markdown: vd?.getValue()
-    }}).then(() => {
-        message.success('笔记添加成功!')
-    }).catch(() => {
-        message.error("笔记未添加成功,请联系管理员进行修正!")
-    })
+        setIsModalVisible(false)
+        AxiosInstance.request<any, any>({url: "/note/newNote", method: "post", data: {
+            title: Title,
+            category: SelectValue,
+            markdown: vd?.getValue()
+        }}).then(() => {
+            message.success('笔记添加成功!')
+        }).catch(() => {
+            message.error("笔记未添加成功,请联系管理员进行修正!")
+        })
     }
   
     const handleCancel = () => {
-      setIsModalVisible(false)
+        setIsModalVisible(false)
     }
     useEffect(() => {
         const vditor = new Vditor('vditor', {
@@ -98,8 +98,8 @@ export const NewNote = (props: NoteProps) => {
             style={
                 vd?.getCurrentMode() === 'sv'
                     ? {
-                          paddingLeft: '10%'
-                      }
+                        paddingLeft: '10%'
+                    }
                     : undefined
             }
             className={classNames(`${prefixCls}-container`, {
@@ -112,8 +112,8 @@ export const NewNote = (props: NoteProps) => {
                 style={
                     vd?.getCurrentMode() === 'sv'
                         ? {
-                              width: '70vw'
-                          }
+                            width: '70vw'
+                        }
                         : undefined
                 }
                 className={classNames('vditor', `${prefixCls}-vditor`)}
@@ -121,18 +121,18 @@ export const NewNote = (props: NoteProps) => {
             <MakedownNavbar theme={theme?"dark":""} className={`${prefixCls}-navbar`} source={content}></MakedownNavbar>
             <Modal title="编辑笔记标题以及分类" centered mask visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
 
-            <Select mode="tags" maxTagCount={1} style={{ width: '100%', marginBottom: "15px" }} value={SelectValue} placeholder="选择笔记对应的分类"
-                onChange={(value) => {
-                    if (value.length > 1)
-                    SetSelectValue(value[1])
-                    else
-                    SetSelectValue(value[0])
-                }}
-            >
-                {category?.map(val => {
-                    return <Option key={val}>{val}</Option>
-                })}
-            </Select>
+                <Select mode="tags" maxTagCount={1} style={{ width: '100%', marginBottom: "15px" }} value={SelectValue} placeholder="选择笔记对应的分类"
+                    onChange={(value) => {
+                        if (value.length > 1)
+                            SetSelectValue(value[1])
+                        else
+                            SetSelectValue(value[0])
+                    }}
+                >
+                    {category?.map(val => {
+                        return <Option key={val}>{val}</Option>
+                    })}
+                </Select>
                 <Input placeholder="编辑笔记的标题" value={Title} onChange={val => SetTitle(val.target.value)} />
             </Modal>
         </div>

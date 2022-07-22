@@ -73,7 +73,6 @@ export const NavBar = (props: NavBarProps) => {
             clearTimeout(scrollTimeout)
         scrollTimeout = setTimeout(() => {
             const target = document.querySelector<HTMLElement>(`[id="${dataId}"]`)
-            console.log(target)
             if (target && typeof target.offsetTop === 'number')
                 safeScrollTo(window, target.offsetTop - headingTopoffset, 0, movesmooth)
         }, 0)
@@ -112,10 +111,8 @@ export const NavBar = (props: NavBarProps) => {
                     content: val.replace(matchTitle, '$1').trim()
                 }
             }) || []
-        console.log('---NavBarStructure before is', NavBarStructure)
         SetNavBarStructureNumber(NavBarStructure)
         SetNavBarStructureOffsetTop(NavBarStructure)
-        console.log('---NavBarStructure is', NavBarStructure)
         return NavBarStructure
     }
     // forbid the question about the multi same paragraph 避免有多个标题重名的问题
@@ -215,8 +212,8 @@ export const NavBar = (props: NavBarProps) => {
         })
     }
     return (
-            <ul id={markdownContainerId} style={props.containerstyle} className={classNames('NavBar-Container', props.containerClassName)}>
-                {renderNavBar(NavBar)}
-            </ul>
+        <ul id={markdownContainerId} style={props.containerstyle} className={classNames('NavBar-Container', props.containerClassName)}>
+            {renderNavBar(NavBar)}
+        </ul>
     )
 }

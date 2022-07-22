@@ -20,7 +20,6 @@ export const Live = (props: { theme?: string }) => {
     // 获取对应的 List数据
     useEffect(() => {
         AxiosInstance.request<ListContent[], ListContent[]>({url: "/blog/getBlogInfo"}).then((val) => {
-            console.log(val, "val--")
             SetListContent(val)
         })
     }, [])

@@ -1,45 +1,46 @@
 .blog-intro-container {
-    box-sizing: border-box;
-    padding: 20px;
-    width: 100%;
-    text-align: center;
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
 }
 .blog-intro-image img {
-    border-radius: 100%;
-    width: 100px;
+  border-radius: 100%;
+  width: 100px;
 }
 .blog-intro-text {
-    font-weight: 600;
-    font-size: 16px;
+  font-weight: 600;
+  font-size: 16px;
 }
 .blog-intro-statis {
-    margin-top: 12px;
-    display: flex;
-    justify-content: space-around;
-    font-size: 16px;
+  margin-top: 12px;
+  display: flex;
+  justify-content: space-around;
+  font-size: 16px;
 }
 .blog-intro-statis-text1 {
-    padding: 4px;
+  padding: 4px;
 }
 .blog-intro-statis-text2 {
-    padding: 4px;
-    font-weight: 500;
+  padding: 4px;
+  font-weight: 500;
 }
 .blog-intro-icon-array {
-    font-size: 30px;
+  font-size: 30px;
 }
 .blog-intro-icon-array img {
-    margin: 0 2px;
+  margin: 0 2px;
 }
 .blog-intro-icon-array img:hover {
-    filter: invert(61%) sepia(51%) saturate(455%) hue-rotate(101deg) brightness(86%) contrast(92%);
+  filter: invert(61%) sepia(51%) saturate(455%) hue-rotate(101deg)
+    brightness(86%) contrast(92%);
 }
 .blog-intro-button {
-    width: 80%;
-    background-color: black;
-    color: white;
-    font-weight: '400';
+  width: 80%;
+  background-color: black;
+  color: white;
+  font-weight: "400";
 }
 .blog-intro-button button:hover {
-    background-color: #3eaf7c !important;
+  background-color: #3eaf7c !important;
 }

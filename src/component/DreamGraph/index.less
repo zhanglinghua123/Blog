@@ -1,0 +1,26 @@
+@keyframes twinkle {
+    25% {
+        opacity: 0;
+    }
+}
+
+.star {
+    fill: white;
+    animation: twinkle 2s infinite
+}
+
+.star:nth-child(3n) {
+    opacity: 0.8;
+}
+
+.star:nth-child(7n) {
+    opacity: 0.6;
+}
+
+.star:nth-child(13n) {
+    opacity: 0.4;
+}
+
+.star:nth-child(19n) {
+    opacity: 0.2;
+}

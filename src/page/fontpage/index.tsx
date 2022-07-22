@@ -5,6 +5,7 @@ import { Intro } from './component/Intro'
 import './style/index.less'
 import Image from '../../static/picture/portrait.jpg'
 import AxiosInstance from '../../network/axios'
+import { PageHead } from '../../component/PageHead'
 
 export const FontPage = (props: { isNight: boolean }) => {
     const { isNight } = props
@@ -12,7 +13,7 @@ export const FontPage = (props: { isNight: boolean }) => {
     // 博客信息存储的地方
     const [CardArray, SetCardArray] = useState<CardProps[]>()
     //  显示的句子数据
-    const [HeadSentence] = useState<string[]>([
+    const [HeadSentence] = useState<[string, string]>([
         '记 录 ,生 命 中 的 美 好',
         "Don't Cry,do laugh"
     ])
@@ -22,7 +23,7 @@ export const FontPage = (props: { isNight: boolean }) => {
             SetCardArray(val.map(value => {
                 return {
                     title: value.title,
-                    titleurl: value._id,
+                    titleurl: "/blog/" + value._id,
                     time: value.time,
                     tipArray: value?.category?.map(val => {
                         return {
@@ -37,12 +38,7 @@ export const FontPage = (props: { isNight: boolean }) => {
     }, [])
     return (
         <div>
-            <div className={classNames(`${prefixCls}-head`)}>
-                <div className={`${prefixCls}-head-sentence`}>
-                    <div>{HeadSentence[0]}</div>
-                    <div>{HeadSentence[1]}</div>
-                </div>
-            </div>
+            <PageHead HeadSentence={HeadSentence}></PageHead>
             <div
                 className={classNames(`${prefixCls}-content`, {
                     light: !isNight,

@@ -52,8 +52,8 @@ export const List = (props: ListProps) => {
                             val.List
                                 ? undefined
                                 : classNames(`${prefixCls}-list-no-item`, {
-                                      active: activeIndex === index
-                                  })
+                                    active: activeIndex === index
+                                })
                         }
                     >
                         <div
@@ -61,10 +61,10 @@ export const List = (props: ListProps) => {
                                 val.List?.length === 0
                                     ? () => onClick(val.TitleUrl)
                                     : () => {
-                                          // 如果再次点击active的item 则进行收回操作
-                                          setActiveIndex(activeIndex === index ? -1 : index)
-                                          setActiveIndexItem(-1)
-                                      }
+                                        // 如果再次点击active的item 则进行收回操作
+                                        setActiveIndex(activeIndex === index ? -1 : index)
+                                        setActiveIndexItem(-1)
+                                    }
                             }
                         >
                             <span>{val.Title}</span>

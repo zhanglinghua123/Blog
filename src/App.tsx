@@ -11,8 +11,13 @@ import { BlogPre } from './page/blog/blogmarkdown'
 import { Live } from './page/live'
 import { NewBlog } from './page/blog/new'
 import 'antd/dist/antd.css'
+import { AddClickOnHeart } from './component/ClickHeart'
+import { Friend } from './page/friend'
+import { Dream } from './page/live/dream'
+import { GetUrlRelativePath } from './util/getURL'
 function App() {
     let modelname = 'hijiki'
+    console.log(GetUrlRelativePath(document.location.toString()), "----")
     useEffect(() => {
         // setTimeout(() => {
         // 定时器,created执行一秒后触发
@@ -44,7 +49,10 @@ function App() {
         }
         // }, 300);
     }, [modelname])
-
+    // 添加点击爱心效果
+    useEffect(() => {
+        AddClickOnHeart()
+    }, [])
     //  用来设置夜间模式
     const [isNight, SetNight] = useState<boolean>(false)
     return (
@@ -70,10 +78,13 @@ function App() {
                 />
                 <Route path="/blog/:id" element={<BlogPre theme={isNight} />} />
                 <Route path="/live" element={<Live theme={isNight?"night":"light"} />} />
+                <Route path="/live/dream" element={<Dream></Dream>}></Route>
+                <Route path="/friend" element={<Friend></Friend>}></Route>
             </Routes>
             <div className="App">
                 {/* 顶部的导航栏 */}
                 <Head
+                    UnAppearUrl={["/live/dream"]}
                     theme={isNight ? 'night' : 'light'}
                     HeadNameArray={[
                         ['首页', '/'],
@@ -93,7 +104,9 @@ function App() {
                                 ['浏览', '/note']
                             ]
                         ],
-                        ['生活', '/live'],
+                        ['生活', '/live', [
+                            ["心愿", "live/dream"]
+                        ]],
                         ['友链', '/friend'],
                         ['Github', '/github'],
                         <img

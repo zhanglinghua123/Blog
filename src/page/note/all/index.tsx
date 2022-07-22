@@ -16,29 +16,34 @@ export const AllNote = (props: { theme?: string }) => {
     // 设置List显示的内容
     const [ListContent, SetListContent] = useState<ListContent[]>([])
     const prefixCls = getPreFixCls('note')
+    // 设置加载状态
+    const [Loading, SetLoading] = useState<boolean>(true)
     // 获取对应的 List数据
     useEffect(() => {
         AxiosInstance.request<ListContent[], ListContent[]>({url: "/note/getNoteInfo"}).then((val) => {
-            console.log("val---", val)
             SetListContent(val)
         })
     }, [])
     // 获取对应的Makedown文件
     useEffect(() => {
+        setContent("")
+        SetLoading(true)
         AxiosInstance.request<{markdown:string}, {markdown:string}>({url: "/note/getNote", params: { id: url}}).then((val) => {
             setContent(val.markdown)
+            SetLoading(false)
         })
     }, [url])
     return (
         <div className={classNames(`${prefixCls}-container`, theme)}>
+            <div className={`${prefixCls}-total`}>
+                <List
+                    onClick={(url: string) => SetUrl(url)}
+                    content={ListContent}
+                ></List>
+            </div>
             <div className={`${prefixCls}-box`}>
-                <div className={`${prefixCls}-total`}>
-                    <List
-                        onClick={(url: string) => SetUrl(url)}
-                        content={ListContent}
-                    ></List>
-                </div>
                 <MarkdownView
+                    loading={Loading}
                     textContent={content}
                     darkMode={true}
                     className={`${prefixCls}-view`}
