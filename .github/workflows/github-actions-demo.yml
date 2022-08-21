@@ -19,7 +19,6 @@ jobs:
       - name : Install Dependency
         run: npm install
       - name : Build the Blog
-        run: export CI=false
         run: npm run build
       - name: Upload result
         uses: actions/upload-artifact@v3
