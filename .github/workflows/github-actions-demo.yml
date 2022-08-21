@@ -6,8 +6,8 @@ on:
 
 env:
   MY_SERVER_PRIVATE_KEY:  ${{secrets.MY_SERVER_PRIVATE_KEY}}
-  MY_SERVER_USER: "root"
-  MY_SERVER_IP: "101.35.35.56"
+  MY_SERVER_USER: ${{secrets.MY_SERVER_USER}}
+  MY_SERVER_IP: ${{secrets.MY_SERVER_IP}}
   My_SERVER_PRIVATE_KEY_PLUS : xasasa
   cache-name: 2020
 jobs:
@@ -29,8 +29,8 @@ jobs:
         with:
           host: ${{ env.MY_SERVER_IP }} # 下面三个配置与上一步类似
           username: ${{ env.MY_SERVER_USER }}
-          password : "zlh011228"
-          # key: ${{ env.MY_SERVER_PRIVATE_KEY }}
+          key: ${{ env.MY_SERVER_PRIVATE_KEY }}
+          debug : true
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
           script: |
             cd ..
