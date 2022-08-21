@@ -21,21 +21,7 @@ jobs:
         run: npm install
       - name : Build the Blog
         run: npm run build
-      - name: Upload result
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: build
-  Deploy:
-    name: Deploy
-    needs: build-production
-    runs-on: ubuntu-latest
-    steps:
-    - name: Download result
-      uses: actions/download-artifact@v1
-      with:
-        name: build
-    - name: Deploy to Server # 第二步，rsync推文件
+      - name: Deploy to Server # 第二步，rsync推文件
         uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
         env:
           DEPLOY_KEY: ${{ env.MY_SERVER_PRIVATE_KEY }} # 引用配置，SSH私钥
