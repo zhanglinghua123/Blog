@@ -1,0 +1,81 @@
+@prefix: ~'blog-intro';
+@import url("../../../../style/base.less");
+
+.@{prefix} {
+    &-container {
+        background-color: var(--backGroundColorLight, white);
+        border-radius: 5%;
+        color: var(--color, black);
+        box-sizing: border-box;
+        padding: 20px;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    &-image img {
+        border-radius: 100%;
+        width: 100px;
+        transition: all 2s ease;
+
+        &:hover {
+            transform: rotate(540deg);
+            // transition: all 1s ease;
+        }
+    }
+
+    &-text {
+        font-weight: 600;
+        font-size: 16px;
+    }
+
+    &-statis {
+        margin-top: 12px;
+        display: flex;
+        justify-content: space-around;
+        font-size: 16px;
+
+        &-text1 {
+            padding: 4px;
+        }
+
+        &-text2 {
+            padding: 4px;
+            font-weight: 500;
+        }
+    }
+
+    &-icon-array {
+        font-size: 30px;
+
+        img {
+            margin: 0 2px;
+            filter: var(--whiteFilter);
+
+            &:hover {
+                filter: invert(61%) sepia(51%) saturate(455%) hue-rotate(101deg) brightness(86%) contrast(92%);
+            }
+        }
+    }
+
+    &-button {
+        width: 80%;
+        background-color: black;
+        color: white;
+        font-weight: '400';
+
+        &:hover {
+            background-color: rgb(62, 175, 124) !important;
+        }
+
+        &:focus {
+            background-color: rgb(62, 175, 124) !important;
+        }
+
+        &:active {
+            background-color: rgb(62, 175, 124) !important;
+        }
+    }
+
+    // height:100%;
+}

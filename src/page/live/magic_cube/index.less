@@ -1,0 +1,31 @@
+@prefix :~"blog-life-cube";
+
+.@{prefix}-background {
+    perspective: 900px;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    background: #666;
+}
+
+.@{prefix}-container {
+    & div {
+        box-sizing: content-box !important;
+    }
+
+    transform-style: preserve-3d;
+    transform: rotateX(0) rotateY(0);
+    // transform: rotateX(-35deg) rotateY(45deg);
+    // top: 50%;
+    // left: 50%;
+    width: 240px;
+    height: 240px;
+    position: absolute;
+}
+
+.blog-cube-button-group {
+    position: fixed;
+    top: 80vh;
+    left: 50vw;
+    transform: translateX(-50%);
+}

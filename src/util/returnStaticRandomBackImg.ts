@@ -1,0 +1,11 @@
+import Img from "../static/picture/fontpageback3.jpg"
+import Img2 from "../static/picture/旅人.jpg"
+import Img3 from "../static/picture/旅行2.jpg"
+import Img4 from "../static/picture/Coffee.jpg"
+import Img5 from "../static/picture/城市.jpg"
+import Img6 from "../static/picture/窗边女孩.jpg"
+import Img7 from "../static/picture/月亮与行者.jpg"
+// import Img7 from "../static/picture/鬼刀.jpg"
+// import Img8 from "../static/picture/狐狸来喽.jpg"
+// import Img9 from "../static/picture/锦衣卫.jpg"
+export const ImgArray =   [Img, Img2, Img3, Img4, Img5, Img6, Img7]

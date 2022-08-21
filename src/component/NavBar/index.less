@@ -1,0 +1,92 @@
+@prefix :~'NavBar';
+
+.@{prefix}-Container {
+    font-size: 14px;
+    padding: 0;
+
+    li {
+        list-style: none;
+        line-height: 2em;
+        cursor: pointer;
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+        word-break: break-all;
+        text-overflow: ellipsis;
+        padding-right: 8px;
+
+        &:hover {
+            color: #007fff;
+            background-color: #eee;
+            border-left: #007fff 2px solid;
+
+            &.dark {
+                border: none;
+                color: #000
+            }
+        }
+    }
+
+    small {
+        margin-right: 16px;
+    }
+
+    .@{prefix}-1 {
+        padding-left: 8px;
+        font-size: 1.2em;
+        color: #000;
+
+        &.dark {
+            color: #ddd
+        }
+    }
+
+    .@{prefix}-2 {
+        font-size: 1.1em;
+        padding-left: 24px;
+        color: #333;
+
+        &.dark {
+            color: #bbb
+        }
+    }
+
+    .@{prefix}-3 {
+        font-size: 1em;
+        padding-left: 40px;
+        color: #666;
+
+        &.dark {
+            color: #999
+        }
+    }
+
+    .@{prefix}-4 {
+        font-size: 0.9em;
+        padding-left: 56px;
+        color: #999;
+
+        &.dark {
+            color: #777
+        }
+    }
+
+    .@{prefix}-5 {
+        font-size: 0.8em;
+        padding-left: 72px;
+        color: #aaa;
+
+        &.dark {
+            color: #666
+        }
+    }
+
+    .@{prefix}-6 {
+        font-size: 0.8em;
+        padding-left: 88px;
+        color: #bbb;
+
+        &.dark {
+            color: #555
+        }
+    }
+}

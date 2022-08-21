@@ -1,0 +1,50 @@
+html {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, apple color emoji, segoe ui emoji, Segoe UI Symbol, noto color emoji;
+  font-size: 14px;
+}
+html .light {
+  transition: background-color 0.5s, color 0.5s;
+  --headBackGroundColor: white;
+  --backGroundColor: rgba(0, 0, 0, 0.06);
+  --backGroundColorLittleLight: rgba(0, 0, 0, 0.03);
+  --backGroundColorLight: white;
+  --blackFilter: invert(0%) sepia(98%) saturate(67%) hue-rotate(145deg) brightness(96%) contrast(100%);
+  --color: black;
+}
+html .night {
+  transition: background-color 0.5s, color 0.5s;
+  --headBackGroundColor: black;
+  --backGroundColor: #171d20;
+  --backGroundColorLittleLight: #171d20;
+  --backGroundColorLight: #2f3133;
+  --whiteFilter: invert(100%) sepia(100%) saturate(0%) hue-rotate(288deg) brightness(102%) contrast(102%);
+  --color: white;
+}
+body {
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.blog-blog-modify-container {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 60px;
+  padding-top: 20px;
+  padding-left: 22%;
+  background-color: var(--backGroundColor);
+}
+.blog-blog-modify-vditor {
+  width: calc(50vw);
+}
+.blog-blog-modify-navbar {
+  border: 2px solid rgba(0, 0, 0, 0.06);
+  margin-left: 20px;
+  border-radius: 10px;
+  min-height: 200px;
+  width: 15vw;
+  background-color: var(--backGroundColorLight) !important;
+  color: var(--color);
+  word-spacing: normal;
+}

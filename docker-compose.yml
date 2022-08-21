@@ -1,0 +1,11 @@
+version: "3"
+services:
+  serve:
+    image: "server:1"
+    container_name: "blog_front_server"
+    restart: "always"
+    volumes:
+      - "./build:/project"
+      - "/etc/localtime:/etc/localtime"
+    ports:
+      - "3000:3000"

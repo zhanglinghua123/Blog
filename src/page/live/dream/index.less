@@ -1,0 +1,68 @@
+.Dream-img {
+    position: fixed;
+    // left: -60px;
+    bottom: 40px;
+    right: 60px;
+    transform: translate(80%, 0);
+    transition: transform 1s ease, opacity 2s ease;
+
+    .Dream-content {
+        transform: opacity 2s ease;
+        opacity: 0;
+    }
+
+    &:hover {
+        .Dream-content {
+            transform: opacity 2s ease;
+            opacity: 1;
+        }
+
+        transition: transform 1s ease,
+        opacity 2s ease;
+        transform: translate(80%, 0) rotate(-30deg);
+    }
+
+    &:hover img {
+        transform: translate(20px, 0) rotate(-30deg);
+        transition: transform 1s ease;
+    }
+
+    img {
+        cursor: pointer;
+        display: block;
+        height: 35vh;
+        transition: transform 1s ease;
+        transform: translate(40px, 0) rotate(-30deg);
+
+        // &:hover {
+        //     transform: rotate(-30deg);
+        //     transition: transform 1s ease;
+
+        // }
+    }
+}
+
+.Dream-content {
+    // padding-left: 4px;
+    // padding-right: 4px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%) rotate(30deg);
+    display: inline-flex;
+    flex-direction: column;
+    margin: 0 auto;
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    // margin-bottom: 20px;
+    // width: 128px;
+    padding: 4px 8px;
+    // background-color: rgba(0, 0, 0, .6);
+
+    p {
+        display: inline-block;
+        margin: 0 auto;
+        margin-bottom: 0;
+        text-align: center;
+        // color: white;
+    }
+}

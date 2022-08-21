@@ -1,0 +1,53 @@
+@prefix: ~"blog-note";
+@import url("../../../../style/base.less");
+
+.@{prefix}-container {
+    // padding: 0 10% 0 10%;
+    position: relative;
+    top: 60px;
+    width: 100vw;
+    min-height: calc(100vh - 60px);
+    min-width: 100px;
+    color: var(--color);
+    background-color: var(--backGroundColorLittleLight, rgba(0, 0, 0, 0.06));
+}
+
+.@{prefix}-box {
+    padding-left: 15vw;
+    display: flex;
+    align-items: flex-start;
+}
+
+.@{prefix}-total {
+    position: fixed;
+    width: 15vw;
+    height: calc(100vh - 60px);
+    background-color: var(--backGroundColorLight);
+    border-right: 1px solid rgba(0, 0, 0, 0.06);
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    // overflow-y: visible;
+
+}
+
+.@{prefix}-view {
+    min-height: calc(100vh - 60px);
+    background-color: var(--backGroundColorLight, );
+    height: auto;
+    padding: 20px 24px 0 24px;
+    width: 70vw;
+}
+
+.@{prefix}-navbar {
+    height: auto;
+    width: 15vw;
+    color: var(--color) !important;
+    min-height: 50vh;
+    background-color: var(--backGroundColorLight, rgba(0, 0, 0, 0.06));
+    border-left: 1px solid rgba(0, 0, 0, 0.06);
+}
