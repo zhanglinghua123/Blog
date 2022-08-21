@@ -9,7 +9,7 @@ env:
   MY_V2_IP: ${{ secrets.MY_SERVER_IP }}
   cache-name: 2020
 jobs:
-  Build:
+  build-production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
