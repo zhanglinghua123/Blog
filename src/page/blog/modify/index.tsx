@@ -9,7 +9,7 @@ import AxiosInstance from '../../../network/axios'
 import {message, Modal, Select} from "antd"
 import { Input } from 'antd'
 import { ColorPicker } from '../../../component/ColorPicker'
-import { Tip } from '../../../component/Tip/tip'
+import { Tip } from '../../../component/MyTip/tip'
 import { dateFormat } from '../../../util/getTime'
 import { useParams } from 'react-router-dom'
 type NoteMessage = {

@@ -1,6 +1,6 @@
 import classNames from 'classnames'
 import { CSSProperties } from 'react'
-import { Tip, TipProps } from '../Tip/tip'
+import { Tip, TipProps } from '../MyTip/tip'
 import { getPreFixCls } from '../../util/getPrefixCls'
 import './card.less'
 import { useNavigate } from 'react-router-dom'
