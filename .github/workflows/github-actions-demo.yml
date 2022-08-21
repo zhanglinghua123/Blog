@@ -43,8 +43,9 @@ jobs:
           debug : true
           # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
           script: |
-            cd ..
-            ls
-            docker ps
-            docker image ls
+            cd ../home/ubuntu/BlogSrc/Deploy
+            docker stop blog_front_server
+            docker rm blog_front_server
+            docker-compose up -d
+
 
