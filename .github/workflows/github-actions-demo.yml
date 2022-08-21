@@ -8,52 +8,14 @@ env:
   MY_SERVER_PRIVATE_KEY:  ${{secrets.MY_SERVER_PRIVATE_KEY}}
   MY_SERVER_USER: root
   MY_SERVER_IP: 101.35.35.56
-  My_SERVER_PRIVATE_KEY_PLUS : "-----BEGIN OPENSSH PRIVATE KEY-----
-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
------END OPENSSH PRIVATE KEY-----
-"
+  My_SERVER_PRIVATE_KEY_PLUS : xasasa
   cache-name: 2020
 jobs:
   build-production:
     runs-on: ubuntu-latest
     steps:
       - name : Printf the ENV
-        run  : echo "The IP is ${{ env.MY_SERVER_IP }} , The User is ${{ env.MY_SERVER_USER }} , The Private_Key is ${{env.MY_SERVER_PRIVATE_KEY}} The Key is ${{ env.MY_SERVER_PRIVATE_KEY_PLUS }}"
+        run  : echo "The IP is ${{ env.MY_SERVER_IP }} , The User is ${{ env.MY_SERVER_USER }} , The Private_Key is ${{env.MY_SERVER_PRIVATE_KEY}} The Key is ${{ env.My_SERVER_PRIVATE_KEY_PLUS }}"
       # - uses: actions/checkout@v3
       # - uses: actions/setup-node@v3
       #   with:
@@ -62,18 +24,19 @@ jobs:
       #   run: npm install
       # - name : Build the Blog
       #   run: npm run build
-      # - name: Restart server # 第三步，重启服务
-      #   uses: appleboy/ssh-action@master
-      #   with:
-      #     host: ${{ env.MY_SERVER_IP }} # 下面三个配置与上一步类似
-      #     username: ${{ env.MY_SERVER_USER }}
-      #     key: ${{ env.MY_SERVER_PRIVATE_KEY }}
-      #     # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
-      #     script: |
-      #       cd ..
-      #       ls
-      #       docker ps
-      #       docker image ls
+      - name: Restart server # 第三步，重启服务
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.MY_SERVER_IP }} # 下面三个配置与上一步类似
+          username: ${{ env.MY_SERVER_USER }}
+          password : zlh011228
+          # key: ${{ env.MY_SERVER_PRIVATE_KEY }}
+          # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
+          script: |
+            cd ..
+            ls
+            docker ps
+            docker image ls
       # - name: Deploy to Server # 第二步，rsync推文件
       #   uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
       #   env:
