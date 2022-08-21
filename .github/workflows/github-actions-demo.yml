@@ -3,14 +3,42 @@ on:
   push:
     branches:
       - release
+env:
+  MY_V2_SERVER_PRIVATE_KEY: ${{ secrets.MY_SERVER_PRIVATE_KEY }} # 服务器私钥
+  MY_V2_USER: ${{ secrets.MY_SERVER_USER }}
+  MY_V2_IP: ${{ secrets.MY_SERVER_IP }}
+  cache-name: 2020
 jobs:
-  check-bats-version:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 14
-      - run: npm install
-      - run: export CI=false
-      - run: npm run build
+      - name : Install Dependency
+        run: npm install
+      - name : Build the Blog
+        run: export CI=false
+        run: npm run build
+      - name: Upload result
+        uses: actions/upload-artifact@v3
+        with:
+          name: build
+          path: build
+  Deploy:
+    name: Deploy
+    needs: build-production
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download result
+      uses: actions/download-artifact@v1
+      with:
+        name: build
+
+    - name: rsync deployments
+      uses: contention/rsync-deployments@v1.0.0
+      env:
+        DEPLOY_KEY: ${{ secrets.MY_SERVER_PRIVATE_KEY }}
+      with:
+        args: "-avzr --delete ${{ env.MY_SERVER_USER }}@${{ env.MY_SERVER_IP }}:~/testParcelActions/"
