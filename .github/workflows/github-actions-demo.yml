@@ -24,8 +24,16 @@ jobs:
         run: npm run build
       - name : Printf the ENV
         run  : echo "The IP is ${{ env.MY_SERVER_IP }} , The User is ${{ env.MY_SERVER_USER }} , The Private_Key is ${{env.MY_SERVER_PRIVATE_KEY}} "
-      - name : Print
-        run  : echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - name: Restart server # 第三步，重启服务
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ env.MY_SERVER_IP }} # 下面三个配置与上一步类似
+          username: ${{ env.MY_SERVER_USER }}
+          key: ${{ env.MY_SERVER_PRIVATE_KEY }}
+          # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
+          script: |
+            cd ..
+            ls
       - name: Deploy to Server # 第二步，rsync推文件
         uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
         env:
@@ -36,13 +44,4 @@ jobs:
           SERVER_IP: ${{ env.MY_SERVER_IP }} # 引用配置，服务器的host名（IP或者域名domain.com）
           USERNAME: ${{ env.MY_SERVER_USER }} # 引用配置，服务器登录名
           SERVER_DESTINATION: ./home/ubuntu/Blog/Deploy # 部署到目标文件夹
-      - name: Restart server # 第三步，重启服务
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ env.MY_SERVER_IP }} # 下面三个配置与上一步类似
-          username: ${{ env.MY_SERVER_USER }}
-          key: ${{ env.MY_SERVER_PRIVATE_KEY }}
-          # 重启的脚本，根据自身情况做相应改动，一般要做的是migrate数据库以及重启服务器
-          script: |
-            ls
 
