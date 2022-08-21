@@ -36,9 +36,13 @@ jobs:
       with:
         name: build
 
-    - name: rsync deployments
-      uses: contention/rsync-deployments@v1.0.0
-      env:
-        DEPLOY_KEY: ${{ secrets.MY_SERVER_PRIVATE_KEY }}
-      with:
-        args: "-avzr --delete ${{ env.MY_SERVER_USER }}@${{ env.MY_SERVER_IP }}:~/testParcelActions/"
+    - name: Deploy to Server # 第二步，rsync推文件
+        uses: AEnterprise/rsync-deploy@v1.0 # 使用别人包装好的步骤镜像
+        env:
+          DEPLOY_KEY: ${{ env.MY_SERVER_PRIVATE_KEY }} # 引用配置，SSH私钥
+          ARGS: -avz --delete --exclude='' # rsync参数，排除.pyc文件
+          SERVER_PORT: '22' # SSH端口
+          FOLDER: build # 要推送的文件夹，路径相对于代码仓库的根目录
+          SERVER_IP: ${{ env.MY_SERVER_IP }} # 引用配置，服务器的host名（IP或者域名domain.com）
+          USERNAME: ${{ env.MY_SERVER_USER }} # 引用配置，服务器登录名
+          SERVER_DESTINATION: ./home/ubuntu/Blog/Deploy # 部署到目标文件夹
