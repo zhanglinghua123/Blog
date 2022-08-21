@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - release
+
 env:
   MY_SERVER_PRIVATE_KEY: ${{ secrets.MY_SERVER_PRIVATE_KEY }} # 服务器私钥
   MY_SERVER_USER: ${{ secrets.MY_SERVER_USER }}
