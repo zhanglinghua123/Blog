@@ -8,6 +8,9 @@ import {Navigate} from "react-router-dom"
 export type UserAuth = {
     auth:string[]
 }
+export function ForMatSessionStorageIntoString(str:string|null) {
+    return str ? {auth: str.split(" ")} : {auth: ["user"]}
+}
 export const AuthMessage = createContext<UserAuth>({auth: ["user"]})
 function ShoudleNavigate(url:string, auth:string[]) {
     const nowLocation = GetUrlRelativePath(document.location.href)

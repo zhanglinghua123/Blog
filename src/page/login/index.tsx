@@ -26,6 +26,7 @@ export const Login = (props:{theme:string, SetUserState:React.Dispatch<React.Set
             method: "post"
         }).then(val => {
             SetUserState({auth: val.auth})
+            sessionStorage.setItem("auth", val.auth.join(" "))
             sessionStorage.setItem("token", val.token)
             message.success("欢迎你,管理员!", 3)
             navigate("/")
