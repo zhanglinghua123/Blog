@@ -15,7 +15,7 @@ import 'antd/dist/antd.css'
 import { AddClickOnHeart } from './component/ClickHeart'
 import { Friend } from './page/friend'
 import { Dream } from './page/live/dream'
-import { AuthMessage, UserAuth } from './component/MyRouteGuard'
+import { AuthMessage, ForMatSessionStorageIntoString, UserAuth } from './component/MyRouteGuard'
 import { MyRouteGuard } from './component/MyRouteGuard'
 import { Login } from './page/login'
 import { ModifyNote } from './page/note/modify'
@@ -62,7 +62,7 @@ function App() {
     //  用来设置夜间模式
     const [isNight, SetNight] = useState<boolean>(false)
     //  当前的用户权限
-    const [UserState, SetUserState] = useState<UserAuth>({auth: ["user"]})
+    const [UserState, SetUserState] = useState<UserAuth>(ForMatSessionStorageIntoString(sessionStorage.getItem("auth")))
     return (
         <BrowserRouter>
             <AuthMessage.Provider value={UserState}>

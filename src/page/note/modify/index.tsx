@@ -8,6 +8,7 @@ import React, { useEffect, useState } from 'react'
 import AxiosInstance from '../../../network/axios'
 import { Input, message, Modal, Select } from 'antd'
 import { useParams } from 'react-router-dom'
+import { TimeoutRetry } from '../../../util/timeoutretry'
 type NoteMessage = {
     markdown:string,
     title:string,
@@ -127,7 +128,9 @@ export const ModifyNote = (props: NoteProps) => {
     //  根据修改的id 初始化对应的内容
     useEffect(() => {
         let ignore = false
-        AxiosInstance.request<NoteMessage, NoteMessage>({url: "/note/getNote", params: { id: url.id}}).then((val) => {
+        TimeoutRetry<NoteMessage>(() => 
+            AxiosInstance.request<NoteMessage, NoteMessage>({url: "/note/getNote", params: { id: url.id}}
+            ), 5).then((val) => {
             if(!ignore) {
                 vditor.setValue(val.markdown)
                 setVd(vditor)

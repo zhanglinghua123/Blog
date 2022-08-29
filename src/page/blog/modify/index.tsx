@@ -12,6 +12,7 @@ import { ColorPicker } from '../../../component/ColorPicker'
 import { Tip } from '../../../component/MyTip/tip'
 import { dateFormat } from '../../../util/getTime'
 import { useParams } from 'react-router-dom'
+import { TimeoutRetry } from '../../../util/timeoutretry'
 type NoteMessage = {
     markdown:string,
     title:string,
@@ -50,14 +51,14 @@ export const ModifyBlog = (props: ModifyProps) => {
     const [Color, SetColor] = useState<string>("rgb(121, 201, 155)")
     const handleOk = () => {
         setIsModalVisible(false)
-        AxiosInstance.request<any, any>({url: "/blog/updateBlog", method: "post", data: {
+        TimeoutRetry(() => AxiosInstance.request<any, any>({url: "/blog/updateBlog", method: "post", data: {
             title: Title,
             category: SelectValue,
             time: dateFormat("dd,mm,YYYY", new Date()),
             markdown: vd?.getValue(),
             _id: url.id
         //   time: 
-        }}).then(() => {
+        }}), 5).then(() => {
             message.success('博客修改成功!')
         }).catch(() => {
             message.error("博客未修改成功,请联系管理员进行修正!")
