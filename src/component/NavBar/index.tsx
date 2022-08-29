@@ -84,15 +84,10 @@ export const NavBar = (props: NavBarProps) => {
     //     }, 0)
     // }
     const getListNo = (arr: number[]) => {
-        let result = ''
-        for (let i = 0; i < arr.length; i++) {
-            if (i === 0) result += arr[i]
-            else {
-                if (arr[i] !== 0) result += `.${arr[i]}`
-                else break
-            }
-        }
-        return result
+        let NoZeroindex = 0
+        for(let i=0;i<arr.length;i++) 
+            if(arr[i] !== 0) NoZeroindex = i
+        return (arr.slice(0, NoZeroindex+1).join("."))
     }
     const getNavBarStructure = (src: string) => {
         // used to match all title
@@ -126,6 +121,7 @@ export const NavBar = (props: NavBarProps) => {
         let NavBarStack: { level: number; listArray: number[] }[] = [
             { level: 1, listArray: [0, 0, 0, 0, 0, 0] }
         ]
+        console.log(structure, "---")
         for (let item of structure) {
             const { level } = item
             while (NavBarStack.length && NavBarStack[NavBarStack.length - 1].level > level)
@@ -135,11 +131,13 @@ export const NavBar = (props: NavBarProps) => {
             newArray[level - 1] += 1
             // set the item's listNo
             item.listNo = getListNo(newArray)
+            console.log(item, newArray, "---")
             NavBarStack.push({
                 level,
                 listArray: newArray
             })
         }
+        console.log(structure, "---after")
     }
     // Set offsetTop and id
     const SetNavBarStructureOffsetTop = (structure: NavBarItem[]) => {
