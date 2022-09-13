@@ -1,0 +1,92 @@
+@prefix :~"blog-calendar-item";
+
+.@{prefix}-container {
+    width: 100%;
+    height: 100%;
+    padding: 20px 40px;
+    background-color: rgba(0, 0, 0, 0.02);
+    border: 2px solid rgba(0, 0, 0, 0.05);
+
+    .@{prefix}-tip {
+        margin-top: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid rgba(0, 0, 0, 0.05);
+
+        span {
+            font-size: 14px;
+            font-weight: 500;
+            width: 14.28%;
+            background-color: rgba(0, 0, 0, 0.02);
+            color: rgba(0, 0, 0, 0.2)
+        }
+
+        & span:first-child {
+            color: rgb(220, 57, 20) !important
+        }
+    }
+
+    .@{prefix}-shedule {
+        width: 100%;
+        height: 25%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+
+        .@{prefix}-shedule-item {
+            width: 14.28%;
+            padding-top: 10px;
+            min-height: 50px;
+            font-size: 20px;
+
+            span {
+                cursor: pointer;
+            }
+        }
+    }
+
+    .@{prefix}-content {
+        flex-grow: 1;
+        margin-left: 20px;
+        margin-top: 20px;
+
+        p:first-child {
+            color: rgba(112, 123, 124, 1);
+            font-size: 18px;
+            letter-spacing: 0.5em;
+        }
+
+        p {
+            font-size: 18px;
+            letter-spacing: 0.1em;
+            color: rgba(0, 0, 0, 0.3)
+        }
+    }
+
+    .@{prefix}-picture {
+        position: relative;
+        width: 100%;
+        height: 50%;
+        background-size: cover;
+        background-image: url(../../../../static/picture/backOne.jpg);
+        background-color: black;
+
+        .@{prefix}-year {
+            position: absolute;
+            bottom: 0;
+            font-size: 12vh;
+            line-height: 1;
+            color: white;
+        }
+
+        .@{prefix}-month {
+            position: absolute;
+            bottom: 10vh;
+            left: 10vh;
+            font-size: 10vh;
+            line-height: 1;
+            color: white;
+        }
+    }
+}

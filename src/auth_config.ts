@@ -49,6 +49,10 @@ export const AuthConfig:AuthItem[]  = [
         auth: ["user", "admin"]
     },
     {
+        url: "/live/calendar",
+        auth: ["user", "admin"]
+    },
+    {
         url: "/friend",
         auth: ["user", "admin"]
     },

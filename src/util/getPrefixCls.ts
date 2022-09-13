@@ -17,7 +17,10 @@ export const getPreFixCls = (name: string) => {
         "blog-modify": "blog-blog-modify",
         "turn-picture": "turn-picture",
         "life-modify": "blog-life-modify",
-        "life-cube": "blog-life-cube"
+        "life-cube": "blog-life-cube",
+        "calendar": "blog-calendar",
+        "calendar-component": "blog-calendar-component",
+        "calendar-item": "blog-calendar-item"
     }
     return obj[name]
 }
