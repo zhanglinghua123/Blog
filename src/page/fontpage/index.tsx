@@ -129,7 +129,7 @@ export const FontPage = (props: { isNight: boolean }) => {
             >
                 <div className={`${prefixCls}-card-group`}>
                     {CardArray?.map(value => {
-                        return <Card key={value.title} {...value}></Card>
+                        return <Card key={1} {...value}></Card>
                     })}
                     <Spin fontBaseSize={"14px"} spinning={false} delay={PageLoadingRef.current ? 0:10000000} indicator={<FourSphereRotate size="large" direction="left" SpinColor="#ACFCCC"></FourSphereRotate>}>
                         <div style={{ 
@@ -168,13 +168,18 @@ export const FontPage = (props: { isNight: boolean }) => {
                         itemArray={[
                             {
                                 backImg: ImgArray[2],
-                                Title: "日记",
-                                Text: "记录生活中的思考"
+                                Title: "笔记",
+                                Text: "记录学习的一脚一步"
                             },
                             {
-                                backImg: ImgArray[1],
+                                backImg: ImgArray[4],
                                 Title: "博客",
-                                Text: "记录生活中的思考"
+                                Text: "记录生活的思考"
+                            },
+                            {
+                                backImg: ImgArray[5],
+                                Title: "笃信",
+                                Text: "相信自己的决定"
                             }
                         ]}></TurnPicture>
                 </div>

@@ -21,6 +21,7 @@ import { Login } from './page/login'
 import { ModifyNote } from './page/note/modify'
 import { ModifyBlog } from './page/blog/modify'
 import { Cube } from './page/live/magic_cube'
+import { CalendarPage } from './page/calendar'
 
 function App() {
     let modelname = 'hijiki'
@@ -128,6 +129,12 @@ function App() {
                             path="/live/cube"
                             element={<Cube></Cube>}>
                         </Route>
+                        <Route
+                            path="/live/calendar"
+                            element={<CalendarPage></CalendarPage>}
+                        >
+
+                        </Route>
                     </Route>
                 </Routes>
                 <div className="App">
@@ -156,7 +163,8 @@ function App() {
                             ['生活', '/live', [
                                 ["新建", "live/new"],
                                 ["心愿", "live/dream"],
-                                ["魔方", "live/cube"]
+                                ["魔方", "live/cube"],
+                                ["日历", "live/calendar"]
                             ]],
                             ['友链', '/friend'],
                             ["登录", "/login"],
