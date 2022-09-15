@@ -78,7 +78,9 @@ export const Head = (props: HeadProps) => {
     return (
         <>  
             {/* 当url处于这些界面的时候 不显示背景的白色 */}
-            {UnAppearUrl.indexOf(GetUrlRelativePath(document.location.toString())) === -1 && <div
+            {UnAppearUrl.indexOf(GetUrlRelativePath(document.location.toString())) === -1 
+            &&
+            <div
                 className={classNames(`${prefixCls}-headcolumn`, theme, {
                     [`${prefixCls}-back-write`]: location.pathname !== '/' && !new RegExp(/\/blog\/[0-9a-f]+/).test(location.pathname) ? true : hasWrite
                 })}

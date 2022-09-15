@@ -1,5 +1,6 @@
 import { Button, Icon } from 'minereactcomponentlibrary'
-import { ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
+import { Envelope } from '../../../../component/Envelope'
 import { getPreFixCls } from '../../../../util/getPrefixCls'
 import './index.less'
 type IntroProp = Partial<{
@@ -12,6 +13,8 @@ type IntroProp = Partial<{
 export const Intro = (props: IntroProp) => {
     const { portrait, iconArray, statistics, UserName } = props
     const prefixCls = getPreFixCls('intro')
+    // 控制信封显示的变量
+    const [envelopeVisible, setEnvelopeVisible] = useState<boolean>(false)
     return (
         <div className={`${prefixCls}-container`}>
             <div className={`${prefixCls}-image`}>
@@ -29,9 +32,12 @@ export const Intro = (props: IntroProp) => {
                     )
                 })}
             </div>
-            <Button type={'text'} className={`${prefixCls}-button`} size="middle">
+            <Button type={'text'} className={`${prefixCls}-button`} size="middle" onClick={() => setEnvelopeVisible((val) => !val)}>
                 点击留言~
             </Button>
+            {
+                envelopeVisible && <Envelope size={30} left={"35vw"} bottom={"5vh"}></Envelope>
+            }
             <div className={`${prefixCls}-icon-array`}>
                 {iconArray?.map(value => {
                     if (typeof value === 'string') 
