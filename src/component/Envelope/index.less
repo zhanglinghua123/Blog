@@ -1,0 +1,103 @@
+@prefixCls :~"blog-envelope";
+
+.@{prefixCls}-container {
+    overflow: hidden;
+    position: relative;
+    animation: Appear 1s;
+    height: calc(70vh + 9vw);
+
+    &::before {
+        width: 100%;
+        padding-bottom: 59.5%;
+        overflow: hidden;
+        // height: 50%;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 7.3vw;
+        background: url("../../static/picture/before.png");
+        background-size: cover;
+    }
+
+    &::after {
+        width: 100%;
+        padding-bottom: 49%;
+        overflow: hidden;
+        // height: 50%;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background: url("../../static/picture/after.png") no-repeat;
+        background-size: cover;
+    }
+
+    &.hide::after &.hide.before {
+        display: none;
+    }
+
+    .@{prefixCls}-content {
+        position: absolute;
+        left: 10%;
+        // bottom: 300px;
+        // height: 1000px;
+        width: 80%;
+        margin: auto;
+        border: 1px solid rgba(0, 0, 0, 0.1);
+        height: 70vh;
+        background-color: white;
+        letter-spacing: 2px;
+
+        p {
+            margin-top: 18px;
+            font-weight: 600;
+            font-size: 18px;
+            color: bisque;
+        }
+
+        div:first-child {
+            font-weight: 600;
+            display: inline;
+            width: auto;
+            color: bisque;
+            outline-style: none;
+            border: 0px;
+        }
+
+        #input {
+            font-weight: 600;
+            margin-left: 10%;
+            width: 80%;
+            color: bisque;
+            outline-style: none;
+            border: 0px;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .tip {
+            margin: 4px 0;
+            line-height: 1.2;
+            font-size: 12px;
+            color: rgba(0, 0, 0, 0.1);
+        }
+
+        #tips {
+            width: 100%;
+            position: absolute;
+            bottom: 10px;
+        }
+    }
+}
+
+@keyframes Appear {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

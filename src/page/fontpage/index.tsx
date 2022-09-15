@@ -54,7 +54,6 @@ export const FontPage = (props: { isNight: boolean }) => {
         var clientHeight = window.innerHeight || Math.min(document.documentElement.clientHeight, document.body.clientHeight)
         if(clientHeight + scrollTop >= 0.9 * scrollHeight && Math.ceil((userMessage?.blog || 0)/10) >= PageSize) 
         {
-            console.log(PageSize, "---", Math.ceil((userMessage?.blog || 0)/10))
             window.removeEventListener("scroll", Listener)
             SetPageSize(value => value+1)
         }
@@ -178,8 +177,8 @@ export const FontPage = (props: { isNight: boolean }) => {
                             },
                             {
                                 backImg: ImgArray[5],
-                                Title: "笃信",
-                                Text: "相信自己的决定"
+                                Title: "求职",
+                                Text: "坐等收感谢信 ^_^ 这形势可真几把操蛋"
                             }
                         ]}></TurnPicture>
                 </div>
