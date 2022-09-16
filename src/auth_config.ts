@@ -17,7 +17,7 @@ export const AuthConfig:AuthItem[]  = [
         auth: ["admin"]
     },
     {   
-        url: "/note/modify",
+        url: "/note/modify/:id",
         auth: ["admin"]
     },
     {
