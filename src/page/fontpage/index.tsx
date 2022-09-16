@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-key */
 import classNames from 'classnames'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect,  useRef, useState } from 'react'
 import { Card, CardProps } from '../../component/MyCard/Card'
 import { Intro } from './component/Intro'
 import './style/index.less'
@@ -46,12 +46,14 @@ export const FontPage = (props: { isNight: boolean }) => {
     const [ImgIndex] = useState<number>(Math.floor(Math.random()*ImgArray.length))
     const TitleMap = useRef<TitleProps>({})
     // 滚动监听的函数
-    const Listener = () => {
+    const Listener = function() {
         var scrollHeight = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight)
         // 滚动条滚动距离
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         // 窗口可视范围高度
         var clientHeight = window.innerHeight || Math.min(document.documentElement.clientHeight, document.body.clientHeight)
+        console.log(scrollHeight, scrollTop, clientHeight, userMessage, "----")
+        
         if(clientHeight + scrollTop >= 0.9 * scrollHeight && Math.ceil((userMessage?.blog || 0)/10) >= PageSize) 
         {
             window.removeEventListener("scroll", Listener)
@@ -116,7 +118,7 @@ export const FontPage = (props: { isNight: boolean }) => {
     useEffect(() => {
         window.addEventListener("scroll", Listener)
         return () => window.removeEventListener("scroll", Listener)
-    }, [])
+    }, [userMessage])
     return (
         <div>
             <PageHead backgroundImg={ImgArray[ImgIndex]} HeadSentence={HeadSentence}></PageHead>
