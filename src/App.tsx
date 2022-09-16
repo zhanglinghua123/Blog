@@ -63,6 +63,7 @@ function App() {
     //  用来设置夜间模式
     const [isNight, SetNight] = useState<boolean>(false)
     //  当前的用户权限
+    console.log(ForMatSessionStorageIntoString(sessionStorage.getItem("auth")), "权限码")
     const [UserState, SetUserState] = useState<UserAuth>(ForMatSessionStorageIntoString(sessionStorage.getItem("auth")))
     return (
         <BrowserRouter>
@@ -71,18 +72,12 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MyRouteGuard></MyRouteGuard>}>
                         <Route path="/" element={<FontPage isNight={isNight} />} />
-                        <Route path="/blog/:id" element={<BlogPre theme={isNight} />} />
-                        <Route path="/blog" element={<Blog theme={isNight} />} />
-                        <Route path="/live" element={<Live theme={isNight?"night":"light"} />} />
-                        <Route path="/live/dream" element={<Dream></Dream>}></Route>
                         <Route path="/friend" element={<Friend></Friend>}></Route>
-                        <Route
-                            path="/note"
-                            element={<AllNote theme={isNight ? 'night' : 'light'} />}
-                        ></Route>
                         <Route path="/login" element={<Login SetUserState={SetUserState} theme={isNight?"night":"light"}></Login>}></Route>
                     </Route>
                     <Route path="/blog" element={<MyRouteGuard></MyRouteGuard>}>
+                        <Route path="/blog/:id" element={<BlogPre theme={isNight} />} />
+                        <Route path="/blog" element={<Blog theme={isNight} />} />
                         <Route
                             path="/blog/new"
                             element={
@@ -97,6 +92,10 @@ function App() {
                         />
                     </Route>
                     <Route path="/note" element={<MyRouteGuard></MyRouteGuard>}>
+                        <Route
+                            path="/note"
+                            element={<AllNote theme={isNight ? 'night' : 'light'} />}
+                        ></Route>
                         <Route
                             path="/note/new"
                             element={
@@ -113,6 +112,8 @@ function App() {
                         </Route>
                     </Route>
                     <Route path="/live" element={<MyRouteGuard></MyRouteGuard>}>
+                        <Route path="/live" element={<Live theme={isNight?"night":"light"} />} />
+                        <Route path="/live/dream" element={<Dream></Dream>}></Route>
                         <Route
                             path="/live/new"
                             element={
@@ -133,7 +134,7 @@ function App() {
                             path="/live/calendar"
                             element={<CalendarPage></CalendarPage>}
                         >
-
+        
                         </Route>
                     </Route>
                 </Routes>

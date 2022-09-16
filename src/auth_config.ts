@@ -37,6 +37,14 @@ export const AuthConfig:AuthItem[]  = [
         auth: ["admin"]
     },
     {
+        url: "/live/modify/:id",
+        auth: ["admin"]
+    },
+    {
+        url: "/live/new",
+        auth: ["admin"]
+    },
+    {
         url: "/live",
         auth: ["user", "admin"]
     },

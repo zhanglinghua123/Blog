@@ -26,7 +26,7 @@ function ShoudleNavigate(url:string, auth:string[]) {
         // 匹配:id这样的格式的url
         if(authItem.url.indexOf(":")!==-1) {
             const authUrlPrefix = authItem.url.substring(0, authItem.url.indexOf(":"))
-            if(authItem.url.indexOf(authUrlPrefix)!==-1) 
+            if(nowLocation.indexOf(authUrlPrefix)!==-1) 
                 RightAuthArray = authItem.auth
         }
     }
@@ -46,5 +46,6 @@ function ShoudleNavigate(url:string, auth:string[]) {
 export const MyRouteGuard = () => {
     // 当前用户的权限码
     const UserState = useContext(AuthMessage)
+    console.log(UserState, GetUrlRelativePath(document.location.href), "---")
     return ShoudleNavigate(document.location.href, UserState.auth)?<Outlet></Outlet>:<Navigate to="/login"></Navigate>
 }
