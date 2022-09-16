@@ -26,8 +26,11 @@ function ShoudleNavigate(url:string, auth:string[]) {
         // 匹配:id这样的格式的url
         if(authItem.url.indexOf(":")!==-1) {
             const authUrlPrefix = authItem.url.substring(0, authItem.url.indexOf(":"))
-            if(nowLocation.indexOf(authUrlPrefix)!==-1) 
+            console.log(nowLocation, authUrlPrefix, "----")
+            if(nowLocation.indexOf(authUrlPrefix)!==-1) {
                 RightAuthArray = authItem.auth
+                break
+            }
         }
     }
     if(!RightAuthArray)
