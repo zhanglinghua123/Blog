@@ -52,7 +52,6 @@ export const FontPage = (props: { isNight: boolean }) => {
         var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop
         // 窗口可视范围高度
         var clientHeight = window.innerHeight || Math.min(document.documentElement.clientHeight, document.body.clientHeight)
-        console.log(scrollHeight, scrollTop, clientHeight, userMessage, "----")
         
         if(clientHeight + scrollTop >= 0.9 * scrollHeight && Math.ceil((userMessage?.blog || 0)/10) >= PageSize) 
         {

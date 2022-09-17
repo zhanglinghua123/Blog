@@ -61,7 +61,7 @@ export const AuthConfig:AuthItem[]  = [
         auth: ["user", "admin"]
     },
     {
-        url: "/friend",
+        url: "/canvas",
         auth: ["user", "admin"]
     },
     {

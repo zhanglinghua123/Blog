@@ -21,7 +21,8 @@ export const getPreFixCls = (name: string) => {
         "calendar": "blog-calendar",
         "calendar-component": "blog-calendar-component",
         "calendar-item": "blog-calendar-item",
-        "envelope": "blog-envelope"
+        "envelope": "blog-envelope",
+        'friend': 'blog-friend'
     }
     return obj[name]
 }

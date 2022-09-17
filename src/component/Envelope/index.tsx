@@ -55,7 +55,6 @@ export const Envelope = (props:{
             <p style={{
                 display: "inline-block"
             }}>来自<div contentEditable="true">陌生人</div>的留言</p>
-            <div contentEditable="true"></div>
             <div id="input" contentEditable>写下你想要说的话吧</div>
             <div id="tips">
                 <p className="tip">你要是有空的话，不如陪陪我</p>
