@@ -72,7 +72,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<MyRouteGuard></MyRouteGuard>}>
                         <Route path="/" element={<FontPage isNight={isNight} />} />
-                        <Route path="/friend" element={<Friend></Friend>}></Route>
+                        <Route path="/canvas" element={<Friend></Friend>}></Route>
                         <Route path="/login" element={<Login SetUserState={SetUserState} theme={isNight?"night":"light"}></Login>}></Route>
                     </Route>
                     <Route path="/blog" element={<MyRouteGuard></MyRouteGuard>}>
@@ -141,7 +141,7 @@ function App() {
                 <div className="App">
                     {/* 顶部的导航栏 */}
                     <Head
-                        UnAppearUrl={["/live/dream", "/login"]}
+                        UnAppearUrl={["/live/dream", "/login", "/canvas"]}
                         theme={isNight ? 'night' : 'light'}
                         HeadNameArray={[
                             ['首页', '/'],
@@ -167,7 +167,7 @@ function App() {
                                 ["魔方", "live/cube"],
                                 ["日历", "live/calendar"]
                             ]],
-                            ['友链', '/friend'],
+                            ['动画', '/canvas'],
                             ["登录", "/login"],
                             ['Github', 'https://github.com/zhanglinghua123'],
                             <img
