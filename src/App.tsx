@@ -78,30 +78,36 @@ function App() {
                     <Route path="/blog" element={<MyRouteGuard></MyRouteGuard>}>
                         <Route path="/blog/:id" element={<BlogPre theme={isNight} />} />
                         <Route path="/blog" element={<Blog theme={isNight} />} />
-                        <Route
-                            path="/blog/new"
-                            element={
-                                <NewBlog placeholder="编辑你的新博客吧!完成后输入esc" theme={isNight} />
-                            }
-                        />
-                        <Route
-                            path="/blog/modify/:id"
-                            element={
-                                <ModifyBlog placeholder="编辑你的新博客吧!完成后输入esc" theme={isNight} />
-                            }
-                        />
+                        <Route path="/blog/new" element={<MyRouteGuard></MyRouteGuard>}>
+                            <Route
+                                path="/blog/new"
+                                element={
+                                    <NewBlog placeholder="编辑你的新博客吧!完成后输入esc" theme={isNight} />
+                                }
+                            />
+                        </Route>
+                        <Route path="/blog/modify/:id" element={<MyRouteGuard></MyRouteGuard>}>
+                            <Route
+                                path="/blog/modify/:id"
+                                element={
+                                    <ModifyBlog placeholder="编辑你的新博客吧!完成后输入esc" theme={isNight} />
+                                }
+                            />
+                        </Route>
                     </Route>
                     <Route path="/note" element={<MyRouteGuard></MyRouteGuard>}>
                         <Route
                             path="/note"
                             element={<AllNote theme={isNight ? 'night' : 'light'} />}
                         ></Route>
-                        <Route
-                            path="/note/new"
-                            element={
-                                <NewNote placeholder="编辑你的新笔记吧!完成后输入esc" theme={isNight} />
-                            }
-                        />
+                        <Route path="/note/new" element={<MyRouteGuard></MyRouteGuard>}>
+                            <Route
+                                path="/note/new"
+                                element={
+                                    <NewNote placeholder="编辑你的新笔记吧!完成后输入esc" theme={isNight} />
+                                }
+                            />
+                        </Route>
                         <Route path="/note/modify" element={<MyRouteGuard></MyRouteGuard>}>
                             <Route
                                 path="/note/modify/:id"
