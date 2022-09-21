@@ -1,24 +1,47 @@
-import { Dropdown, Menu, MenuProps, message, Space } from "antd"
+import { Dropdown, Menu, MenuProps, Space } from "antd"
 import { Icon } from "minereactcomponentlibrary"
-import { useEffect } from "react"
-import { Drawing } from "../../component/Canvas/YoudaBlog"
+import { useEffect, useState } from "react"
+import { createRoot, Root } from "react-dom/client"
+// import { Drawing } from "../../component/Canvas/YoudaBlog"
 import { getPreFixCls } from "../../util/getPrefixCls"
 import "./index.less"
+import { ShapeShifterCanvas } from "./ShapeShifter"
+import { YoudaBlog } from "./YoudaBlog"
+let Components = [YoudaBlog, ShapeShifterCanvas]
 export const Friend = () => {
-    useEffect(() => {
-        Drawing()
-    }, [])
     const prefixCls = getPreFixCls("friend")
+    const [comicNode, setComicNode] = useState<Root|null>(null)
+    const [hasSet, setHasSet] = useState<boolean>(false)
+    useEffect(() => {
+        // 用这种方式避免 Strict Mode 导致的问题
+        if(!hasSet) {
+            let comicNode = document.getElementById("comic")
+            setComicNode(createRoot(comicNode))  
+        }      
+        return () => setHasSet(true)
+    }, [])
     const onClick: MenuProps['onClick'] = ({ key }) => {
-        message.info(`Click on item ${key}`)
+        let Node = Components[key]
+        comicNode.render(<Node></Node>)
     }
+    // 默认选中第一个
+    useEffect(() => {
+        if(comicNode) {
+            let Node = Components[0]
+            comicNode.render(<Node></Node>)
+        }
+    }, [])
     const menu = (
         <Menu
             onClick={onClick}
             items={[
                 {
                     label: '炫彩三角形',
-                    key: '1'
+                    key: 0
+                },
+                {
+                    label: "炫酷动画",
+                    key: 1
                 }
             ]}
         />
@@ -35,7 +58,6 @@ export const Friend = () => {
                     }}></Icon>
                 </a>
             </Dropdown>
-            <canvas>
-            </canvas>
+            <div id="comic"></div>
         </>)
 }
