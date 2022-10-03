@@ -3,6 +3,12 @@ import "./index.less"
 type Action = {
     type : "letter"
     value: string
+} | {
+    type : "triangle" | "rectangle",
+    value:{
+        width : number,
+        height : number,
+    }
 }
 class ShapeShifter {
     public Drawing : Drawing | undefined
@@ -26,6 +32,12 @@ class ShapeShifter {
         switch(action.type) {
         case "letter":
             this.Shape.switchShape(this.ShapeBuilder.letter(action.value), false)
+            break
+        case "triangle":
+            this.Shape.switchShape(this.ShapeBuilder.triangle(action.value.width, action.value.height), false)
+            break
+        case "rectangle":
+            this.Shape.switchShape(this.ShapeBuilder.rectangle(action.value.width, action.value.height), false)
         }
     }
     // eslint-disable-next-line no-unused-vars
@@ -47,10 +59,10 @@ class ShapeShifter {
         }
     }
     performComic(sequence?, delay = 2000, reverse = false) {
-        let Sequence = sequence || ["Shape", "Shifter", "Type", "to start", "3", "2", "1"].map(val => {return {
+        let Sequence:Action[] = sequence || [...["Shape", "Shifter", "Type", "to start", "3", "2", "1"].map(val => {return {
             type: "letter",
             value: val
-        } })
+        } }), {type: "rectangle", value: {width: 30, height: 30}}, {type: "letter", value: ""}]
         const perFormAction = this.perFormAction.bind(this)
         const fn = function(index:number) {
             perFormAction(Sequence[index])
@@ -292,9 +304,13 @@ class Dot {
     }
 }
 class Shape {
+    // 组成整个图形的所有节点
     public dots : Dot[]
+    // 代表的是canvas中绘制的X坐标最小值
     public cx : number
+    // 代表的是canvas中绘制的Y坐标最小值
     public cy : number
+    // 整个图形的宽高
     public width : number
     public height : number
     constructor() {
@@ -449,6 +465,28 @@ class ShapeBuilder {
         this.shapeContext.clearRect(0, 0, this.shapeCanvas.width, this.shapeCanvas.height)
         this.shapeContext.fillText(str, this.shapeCanvas.width / 2, this.shapeCanvas.height / 2)
   
+        return this.processCanvas()
+    }
+    rectangle(weight:number, height:number) {
+        let points = []
+        for(let i=0;i<weight;i++)
+        {for(let j=0;j<height;j++) 
+        {points.push(new Point({
+            x: this.gap *i,
+            y: this.gap *j
+        }))}
+        }
+        return {points: points, w: weight*this.gap, h: height*this.gap}
+    }
+    triangle(weight:number, height:number) {
+        this.shapeContext.clearRect(0, 0, this.shapeCanvas.width, this.shapeCanvas.height)
+        this.shapeContext.beginPath()
+        this.shapeContext.moveTo(window.innerWidth / 2 - weight / 2, window.innerHeight / 2 + height / 2)
+        this.shapeContext.lineTo(window.innerWidth / 2 + weight / 2, window.innerHeight / 2 + height / 2)
+        this.shapeContext.lineTo(window.innerWidth / 2, window.innerHeight / 2 - height / 2)
+        this.shapeContext.lineTo(window.innerWidth / 2 - weight / 2, window.innerHeight / 2 + height / 2)
+        this.shapeContext.closePath()
+        this.shapeContext.fill()
         return this.processCanvas()
     }
     // 将当前Canvas上面的像素点转换为 节点
