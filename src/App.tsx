@@ -26,34 +26,64 @@ import { CalendarPage } from './page/calendar'
 function App() {
     let modelname = 'hijiki'
     useEffect(() => {
-        // setTimeout(() => {
-        // 定时器,created执行一秒后触发
-        if ((window as any).L2Dwidget) {
-            (window as any).L2Dwidget.init({
-                pluginRootPath: 'live2dw/', // 指向你的目录
-                pluginJsPath: 'lib/', // 指向你的目录
-                // pluginModelPath: 'live2d-widget-model-nico/assets/',                                   //中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
-                tagMode: false,
-                debug: false,
-                // hibiki 是jk hijiki 是黑猫猫
-                // izumi 中年妇女 kahuru Q版女孩子
-                // wanko 是笨狗
-                // tororo 白猫
-                model: {
-                    jsonPath: `/live2dw/live2d-widget-model-${modelname}/assets/${modelname}.model.json`
-                }, // 中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
-                display: {
-                    position: 'left',
-                    width: 130,
-                    height: 130,
-                    hOffset: 60, // canvas水平偏移
-                    vOffset: 100, // canvas垂直偏移
-                    opacity: 0.6
-                }, // 调整大小,和位置
-                mobile: { show: true }, // 要不要盯着你的鼠标看
-                log: false
-            })
+        const registerLive2d = () => {
+            if ((window as any).L2Dwidget) {
+                (window as any).L2Dwidget.init({
+                    pluginRootPath: 'live2dw/', // 指向你的目录
+                    pluginJsPath: 'lib/', // 指向你的目录
+                    // pluginModelPath: 'live2d-widget-model-nico/assets/',                                   //中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
+                    tagMode: false,
+                    debug: false,
+                    // hibiki 是jk hijiki 是黑猫猫
+                    // izumi 中年妇女 kahuru Q版女孩子
+                    // wanko 是笨狗
+                    // tororo 白猫
+                    model: {
+                        jsonPath: `/live2dw/live2d-widget-model-${modelname}/assets/${modelname}.model.json`
+                    }, // 中间这个koharu就是你的老婆,想换个老婆,换这个就可以了
+                    display: {
+                        position: 'left',
+                        width: window.innerHeight * 0.16,
+                        height: window.innerHeight * 0.16,
+                        hOffset: 60, // canvas水平偏移
+                        vOffset: 100, // canvas垂直偏移
+                        opacity: 0.6
+                    }, // 调整大小,和位置
+                    mobile: { show: true }, // 要不要盯着你的鼠标看
+                    log: false
+                })
+            }
         }
+        let timer 
+        const timeoutRegisterLive2d = function() {
+            // 注销之前的定时器
+            if(timer) 
+                clearInterval(timer)
+            
+            timer = setInterval(() => {
+                if ((window as any).L2Dwidget) {
+                    registerLive2d()
+                    clearInterval(timer)
+                    timer = undefined
+                }
+            }
+            , 1000)
+        
+        }
+        timeoutRegisterLive2d()
+        let timerTwo 
+        const windowOnresize = () => {
+            if(!timerTwo)
+            {
+                timerTwo = setTimeout(() => {
+                    timeoutRegisterLive2d()
+                    clearTimeout(timerTwo)
+                    timerTwo = undefined
+                }, 1000)
+            }
+        }
+        window.addEventListener("resize", windowOnresize)
+        return () => window.removeEventListener("resize", windowOnresize)
         // }, 300);
     }, [modelname])
     // 添加点击爱心效果
