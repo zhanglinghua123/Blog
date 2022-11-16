@@ -82,6 +82,7 @@ function App() {
                 }, 1000)
             }
         }
+        //  触发 更新
         window.addEventListener("resize", windowOnresize)
         return () => window.removeEventListener("resize", windowOnresize)
         // }, 300);
