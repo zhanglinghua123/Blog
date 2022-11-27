@@ -134,6 +134,27 @@ export const ModifyBlog = (props: ModifyProps) => {
             clearInterval(Timer)
         }
     }, [vd])
+    useEffect(() => {
+        const Timer = setInterval(() => {
+            if(vd.getValue()) {
+                AxiosInstance.request<any, any>({url: "/blog/updateBlog", method: "post", data: {
+                    title: Title,
+                    category: SelectValue,
+                    time: dateFormat("dd,mm,YYYY", new Date()),
+                    markdown: vd?.getValue(),
+                    _id: url.id
+                //   time: 
+                }}).then(() => {
+                    message.success('博客修改成功!')
+                }).catch(() => {
+                    message.error("博客未修改成功,请联系管理员进行修正!")
+                })
+            }
+        }, 10000)
+        return () => {
+            clearInterval(Timer)
+        }
+    }, [vd])
     //  根据修改的id 初始化对应的内容
     useEffect(() => {
         AxiosInstance.request<NoteMessage, NoteMessage>({url: "/blog/getBlog", params: { id: url.id}}).then((val) => {
