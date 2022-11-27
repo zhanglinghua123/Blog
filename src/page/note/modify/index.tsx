@@ -125,6 +125,25 @@ export const ModifyNote = (props: NoteProps) => {
             clearInterval(Timer)
         }
     }, [vd])
+    useEffect(() => {
+        const Timer = setInterval(() => {
+            if(vd.getValue()) {
+                AxiosInstance.request<any, any>({url: "/note/updateNote", method: "post", data: {
+                    title: Title,
+                    category: SelectValue,
+                    markdown: vd?.getValue(),
+                    _id: url.id
+                }}).then(() => {
+                    message.success('笔记更新成功!')
+                }).catch(() => {
+                    message.error("笔记未修改成功,请联系管理员进行修正!")
+                })
+            }
+        }, 10000)
+        return () => {
+            clearInterval(Timer)
+        }
+    }, [vd])
     //  根据修改的id 初始化对应的内容
     useEffect(() => {
         let ignore = false
