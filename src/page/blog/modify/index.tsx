@@ -150,7 +150,7 @@ export const ModifyBlog = (props: ModifyProps) => {
                     message.error("博客未修改成功,请联系管理员进行修正!")
                 })
             }
-        }, 10000)
+        }, 180000)
         return () => {
             clearInterval(Timer)
         }

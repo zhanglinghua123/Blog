@@ -139,7 +139,7 @@ export const ModifyNote = (props: NoteProps) => {
                     message.error("笔记未修改成功,请联系管理员进行修正!")
                 })
             }
-        }, 10000)
+        }, 180000)
         return () => {
             clearInterval(Timer)
         }
