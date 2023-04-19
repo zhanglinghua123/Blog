@@ -35,6 +35,16 @@ export const CalendarItemEdit = (props : Props) => {
     const onAddCall = () => {
         setIsAdd(true)
     }
+    console.log(month, day)
+    const ComputedAllNeedData = (month:number, day:number):Date[] => {
+        function addDate(date:Date, day:number) {
+            return new Date(date.setDate(date.getDate() + day))
+        }
+        const year = new Date().getFullYear()
+        const now = new Date(`${year}-${month}-${day}`)
+        const reviewArray = [1, 2, 4, 7, 10, 13]
+        return reviewArray.map(val => addDate(now, val))
+    }
     const onDeleteCall = () => {
         AxiosInstance.request<{month:string, day:string, schedule:CalendarItem[]}, {month:string, day:string, schedule:CalendarItem[]}>
         ({url: "/life/calendar/delete", params: {
@@ -122,25 +132,45 @@ export const CalendarItemEdit = (props : Props) => {
             />
             <Modal 
                 className="add-modal"
-                onOk={() => {
-                    AxiosInstance.request<string, string>({
-                        url: "/life/calendar/add", 
-                        method: "post",
-                        data: {
-                            month,
-                            day,
-                            schedule: [
-                                ...dataSource, {content: inputValue, date: timeValue}
-                            ]
-                        }}).then(() => {
-                        setInputValue("")
-                        setTimeValue("00:00:00")
-                        message.success("添加成功")
-                        onAdd?.()
-                    })
-                }
-                }
-                onCancel={() => setIsAdd(false)}
+                footer={[
+                    <Button key="Add" onClick={() => {
+                        AxiosInstance.request<string, string>({
+                            url: "/life/calendar/add", 
+                            method: "post",
+                            data: {
+                                month,
+                                day,
+                                schedule: [
+                                    ...dataSource, {content: inputValue, date: timeValue}
+                                ]
+                            }}).then(() => {
+                            setInputValue("")
+                            setTimeValue("00:00:00")
+                            message.success("添加成功")
+                            onAdd?.()
+                        })
+                    }}>Add</Button>,
+                    <Button key="newWords" onClick={() => {
+                        Promise.all(ComputedAllNeedData(month, day).map(val => {
+                            return AxiosInstance.request<string, string>({
+                                url: "/life/calendar/add", 
+                                method: "post",
+                                data: {
+                                    month: val.getMonth(),
+                                    day: val.getDay(),
+                                    schedule: [
+                                        ...dataSource, {content: inputValue, date: timeValue}
+                                    ]
+                                }})
+                        })).then(() => {
+                            setInputValue("")
+                            setTimeValue("00:00:00")
+                            message.success("添加成功")
+                            onAdd?.()
+                        })
+                    }}>NewWords</Button>,
+                    <Button key="Cancel" onClick={() => setIsAdd(false)}>Cancel</Button>
+                ]}
                 title={"新增事项"}
                 visible={isAdd}>
                 <p>输入你预定的事项:</p>

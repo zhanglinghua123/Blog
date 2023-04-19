@@ -22,6 +22,8 @@ import { ModifyNote } from './page/note/modify'
 import { ModifyBlog } from './page/blog/modify'
 import { Cube } from './page/live/magic_cube'
 import { CalendarPage } from './page/calendar'
+import { Words } from './page/study/words'
+import { Recite } from './page/study/recite'
 
 function App() {
     let modelname = 'hijiki'
@@ -174,11 +176,15 @@ function App() {
         
                         </Route>
                     </Route>
+                    <Route path="/study">
+                        <Route path="/study/words" element={<Words></Words>}></Route>
+                        <Route path="/study/words/recite" element={<Recite></Recite>}></Route>
+                    </Route>
                 </Routes>
                 <div className="App">
                     {/* 顶部的导航栏 */}
                     <Head
-                        UnAppearUrl={["/live/dream", "/login", "/canvas"]}
+                        UnAppearUrl={["/live/dream", "/login", "/canvas", "/study/words/recite"]}
                         theme={isNight ? 'night' : 'light'}
                         HeadNameArray={[
                             ['首页', '/'],
@@ -205,6 +211,10 @@ function App() {
                                 ["日历", "live/calendar"]
                             ]],
                             ['动画', '/canvas'],
+                            ['学习', '/study', [
+                                ["单词", "study/words"]
+                            ]
+                            ],
                             ["登录", "/login"],
                             ['Github', 'https://github.com/zhanglinghua123'],
                             <img

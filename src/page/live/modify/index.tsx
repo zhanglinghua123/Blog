@@ -86,6 +86,10 @@ export const ModifyBlog = (props: ModifyProps) => {
                 onComplete?.()
                 setIsModalVisible(true)
             },
+            ctrlEnter: () => {
+                onComplete?.()
+                setIsModalVisible(true)
+            },
             theme: theme ? 'dark' : 'classic',
             upload: {
                 // url: "http://124.220.201.171:9205/img/upload",
