@@ -64,7 +64,7 @@ export const Recite = () => {
                 })}
             </div>
         </div>
-        <Modal title="详细释义" visible={isModalOpen} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
+        <Modal title="详细释义" width={Math.min(window.innerWidth * 0.8, 400) } visible={isModalOpen} onOk={() => setIsModalOpen(false)} onCancel={() => setIsModalOpen(false)}>
             <p style={{
                 fontSize: "16px",
                 marginBottom: "20px"
