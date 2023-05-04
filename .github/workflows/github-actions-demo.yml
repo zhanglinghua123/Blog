@@ -25,7 +25,7 @@ jobs:
       - name : Build the Blog
         run: npm run build
       - name: Deploy to Server # 第二步，rsync推文件
-        uses: azusachino/rsync-deploy@1.0.2 # 使用别人包装好的步骤镜像
+        uses: azusachino/rsync-deploy@v1.0.2 # 使用别人包装好的步骤镜像
         env:
           DEPLOY_KEY: ${{ env.MY_SERVER_PRIVATE_KEY }} # 引用配置，SSH私钥
           ARGS: -avz --delete --exclude='' # rsync参数，排除.pyc文件
